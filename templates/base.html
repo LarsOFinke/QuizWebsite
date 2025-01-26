@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/style.css') }}">
+
+    <script src="{{ url_for('static', filename='script/script.js') }}" defer></script>
+
+    <title>Quiz Website</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <nav>
+            {% if not session.login_confirmed %}
+                <a class="navbar-items" href="/">Home</a>
+                <a class="navbar-items" href="/register">Signup</a>
+            {% else %}
+                <a class="navbar-items" href="/selection">Selection</a>
+            {% endif %}
+
+            {% if session.is_admin %}
+                <a class="navbar-items" href="/quizdb/addcatstops">Add CatsTops</a>
+                <a class="navbar-items" href="/quizdb/addquestions">Add Questions</a>
+                <a class="navbar-items" href="/quizdb/editquestions">Edit Questions</a>
+            {% endif %}
+
+            <a class="navbar-items" href="/highscores">Highscores</a>
+
+            {% if session.username %}
+                <a class="navbar-items" href="/clear-session">Logout</a> 
+            {% endif %}
+        </nav>
+    </div>
+
+
+    <div class="main-container">
+        <br>
+
+        <h1 align="center">
+            {% block header%}
+            {% endblock %}
+        </h1>
+
+        <br>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <br>
+    </div>
+
+    <footer align="center">
+        <p>© 2024 Lars-Oliver Finke. Alle Rechte vorbehalten.</p>
+    </footer>
+    
+</body>
+
+</html>

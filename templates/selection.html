@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h1 align="center">Select the category and topic!</h1>
+        
+        <div class="centered">
+            <div class="form">
+                <form method="POST" action="{{ url_for('views.selection') }}" class="centered">
+                    <label for="category">Category:</label>
+                    <select name="category" id="category" onchange="this.form.submit()">
+                        {% if not session.selected_category %}<option value="">-- Select a Category --{% else %}<option value="{{session.category_id}}">{{session.selected_category}} {% endif %}</option>
+                            {% for category, category_id in categories.items() %}
+                                <option value="{{ category_id }}">{{ category }}</option>
+                            {% endfor %}
+                    </select>
+
+                    <button type="submit" class="btn primary" name="start" value="categ">Play Category!</button>
+                </form>
+                
+                {% if topics %}
+                <hr>
+                    <form method="POST" action="{{ url_for('views.selection') }}" class="centered">
+                        <label for="topic">Topic:</label>
+                        <select name="topic" id="topic">
+                            {% for topic, topic_id in topics.items() %}
+                                <option value="{{ topic_id }}">{{ topic }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        <button type="submit" class="btn primary" name="start" value="topic">Play Topic!</button>
+                    </form>
+                {% endif %}
+
+                <hr>
+
+                <form action="" method="POST" class="centered">
+                    <button type="submit" class="btn primary" name="start" value="full">Play full quiz!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

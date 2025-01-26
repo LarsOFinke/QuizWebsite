@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block header %}
+Please login or sign up!
+{% endblock %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+
+        <div class="flash-success">
+            {% for msg in messages %}
+                <p align="center">{{msg}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <br>
+
+    <form method="POST" class="form">
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        
+        <br>
+
+        <div class="show-password" align="right">
+            <label for="showPassword">Show Password</label>
+            <input type="checkbox" id="showPassword" onclick="togglePassword()">
+        </div>
+
+        <br>
+        <br>
+
+        <div class="btn-box">
+            <button type="reset" class="btn primary">Clear</button>
+                    
+            <button type="submit" class="btn primary" name="login" value="login">Login</button>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+                
+        <button type="submit" class="btn primary" name="login" value="guest">Join as Guest</button>
+    </form>
+{% endblock %}
