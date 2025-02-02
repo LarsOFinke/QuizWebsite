@@ -18,7 +18,7 @@
                 <div>
                     <label for="category">Category:</label>
                     <select name="category" id="category" onchange="this.form.submit()">
-                        <option value="">{% if not session.db_selected_category %}-- Select a Category --{% else %}{{session.db_selected_category}} {% endif %}</option>
+                        <option value="{{ session.db_category_id }}">{% if not session.db_selected_category %}-- Select a Category --{% else %}{{session.db_selected_category}} {% endif %}</option>
                         {% for category, category_id in categories.items() %}
                             <option value="{{ category_id }}">{{ category }}</option>
                         {% endfor %}
@@ -30,6 +30,7 @@
                 <div>
                     <label for="topic" id="topic">Topic:</label>
                     <select name="topic" id="topic" onchange="this.form.submit()">
+                        <option value="{{ session.db_topic_id }}">{% if not session.db_selected_topic %}-- Select a Topic --{% else %}{{session.db_selected_topic}} {% endif %}</option>
                         {% for topic, topic_id in topics.items() %}
                             <option value="{{ topic_id }}">{{ topic }}</option>
                         {% endfor %}
