@@ -74,6 +74,7 @@ def quiz():
             questions: dict = get_questions_by_topic(session['topic_id'])  # {"Question": QuestionID} | str: int
     
     if "question_count" not in session: # Initialize quiz-session
+        session.pop("questions_game", None)
         session["questions_game"] = provide_questions(questions) # Create the Questions (list containing dictionaries)
         session["question_count"] = len(session["questions_game"])
         session['current_question'] = 0
@@ -112,7 +113,9 @@ def quiz():
             questions_game: list = session["questions_game"]
             
             # Clear the session variables
-            #session.pop("questions_game", None)        # KEEP ACTIVE FOR DETAILED QUIZ RESULTS?!
+            session.pop('category_id', None)
+            session.pop('topic_id', None)
+            session.pop('game_mode', None)
             session.pop("question_count", None)
             session.pop('current_question', None)  
             session.pop('score', None) 
