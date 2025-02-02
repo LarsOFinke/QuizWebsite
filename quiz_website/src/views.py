@@ -181,6 +181,7 @@ def quizdb_addquestions():
         return redirect("/")
     
     topics = {}
+    
     selected_category_id = None
     categories: dict = get_all_categories()  # {"name": id}   # Fetch all categories to display in the dropdown
     
@@ -192,8 +193,7 @@ def quizdb_addquestions():
             
             for category, categ_id in categories.items():   # Iterate over the categories-dictionary from the DB
                 if categ_id == selected_category_id:   # Find the selected category name
-                    selected_category = category
-                    session["db_selected_category"] = selected_category    # Save the selected category-name in the session
+                    session["db_selected_category"] = category    # Save the selected category-name in the session
                     break
             
             topics = get_topics_by_category(selected_category_id)  # Fetch topics based on selected category # {"name": id} -> str: int
@@ -210,6 +210,13 @@ def quizdb_addquestions():
             answer_Correct: int = request.form.get('correct')
             
             topic_id: int = session["db_topic_id"]
+            
+
+            topics = get_topics_by_category(session["db_category_id"])
+            for topic, topic_id in topics.items():
+                if topic_id == int(selected_topic_id):
+                    session["db_selected_topic"] = topic
+                    break
             
             action: str = request.form.get('quiz_db')
         
