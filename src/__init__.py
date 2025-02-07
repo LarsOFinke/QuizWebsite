@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_session import Session
 from dotenv import load_dotenv
 from os import getenv
 from datetime import timedelta
@@ -27,6 +28,12 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     
     app.config["SECRET_KEY"] = getenv("SECRET_KEY")
+    app.config['SESSION_USE_SIGNER'] = True
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.config['SESSION_FILE_DIR'] = './sessions'
+    
     app.permanent_session_lifetime = timedelta(minutes=5000)
+    
+    Session(app)
     
     return app
