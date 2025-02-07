@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block header %}
+    Results
+{% endblock %}
+
+{% block content %}
+<h2>You have scored <u>{{result}}%</u>!</h2>
+
+<br>
+
+<a href="/selection">
+    <button class="btn primary">Play again!</button>
+</a>
+
+<br><br>
+
+<h2><u>Quiz details</u></h2>
+
+
+<table>
+    <tr>
+        <th>Question number</th>
+        {% if session.is_admin %}
+            <td>Database ID</td>
+        {% endif %}
+        <th>Correct / Wrong</th>
+        <th>Question details</th>
+    </tr>
+
+    {% for question in questions_game %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            {% if session.is_admin %}
+                <td>{{ question["questionID"] }}</td>
+            {% endif %}
+            <td>{% if question["correctAnswered"] %} Correct {% else %} Wrong {% endif %}</td>
+            <td><a href="/quizresult/details/{{ loop.index }}" target="_blank">Details</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<!-- {% for question in questions_game %}
+    {% if question["correctAnswered"] %}
+        <p>Richtig</p>
+    {% else %}
+        <p>Falsch</p>
+    {% endif %}
+    {{ question["questionText"] }}
+{% endfor %} -->
+
+{% endblock %}

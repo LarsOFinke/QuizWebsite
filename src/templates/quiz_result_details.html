@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header %}
+    Question details
+{% endblock %}
+
+{% block content %}
+    <label for="question"><u>Question:</u></label>
+    <p id="question">{{ question["questionText"] }}</p>
+
+    <label for="answer1"><u>Answer 1:</u></label>
+    <p id="answer1">{{ question["answer1"] }}</p>
+
+    <label for="answer2"><u>Answer 2:</u></label>
+    <p id="answer2">{{ question["answer2"] }}</p>
+
+    <label for="answer3"><u>Answer 3:</u></label>
+    <p id="answer3">{{ question["answer3"] }}</p>
+
+    <label for="answer4"><u>Answer 4:</u></label>
+    <p id="answer4">{{ question["answer4"] }}</p>
+
+    <label for="answerRight"><u>Correct answer:</u></label>
+    <p id="answerRight">{{ question["answerRight"] }}</p>
+
+    <label for="answerUser"><u>Your answer:</u></label>
+    <p id="answerUser">{{ question["answerUser"] }}</p>
+{% endblock %}
