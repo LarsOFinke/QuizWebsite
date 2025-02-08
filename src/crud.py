@@ -91,6 +91,13 @@ def create_quiz_db() -> bool:
                         "FOREIGN KEY(QuestionIDRef) REFERENCES tblQuestion(QuestionID))"
             cursor.execute(sql)
             
+            sql: str = "CREATE TABLE tblImages(" \
+                        "ImageID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " \
+                        "ImageBinary BLOB, " \
+                        "QuestionIDRef INTEGER, " \
+                        "FOREIGN KEY(QuestionIDRef) REFERENCES tblQuestion(QuestionID))"
+            cursor.execute(sql)
+            
             return True
             
     except:
