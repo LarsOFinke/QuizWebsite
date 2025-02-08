@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 
 {% block header %}
-    Question details
+    Quiz-Fragen
 {% endblock %}
+
+    <!-- FRAGE-ANTWORTEN-BEREICH -->
 
 {% block content %}
-    <label for="question"><u>Question:</u></label>
-    <p id="question">{{ question["questionText"] }}</p>
+    <div id="fragen-antworten">
+        <label for="question"><u>Frage:</u></label>
+        <p id="question">{{ question["questionText"] }}</p>
 
-    <label for="answer1"><u>Answer 1:</u></label>
-    <p id="answer1">{{ question["answer1"] }}</p>
+        <label for="answer1"><u>Antwort 1:</u></label>
+        <p id="answer1">{{ question["answer1"] }}</p>
 
-    <label for="answer2"><u>Answer 2:</u></label>
-    <p id="answer2">{{ question["answer2"] }}</p>
+        <label for="answer2"><u>Antwort 2:</u></label>
+        <p id="answer2">{{ question["answer2"] }}</p>
 
-    <label for="answer3"><u>Answer 3:</u></label>
-    <p id="answer3">{{ question["answer3"] }}</p>
+        <label for="answer3"><u>Antwort 3:</u></label>
+        <p id="answer3">{{ question["answer3"] }}</p>
 
-    <label for="answer4"><u>Answer 4:</u></label>
-    <p id="answer4">{{ question["answer4"] }}</p>
+        <label for="answer4"><u>Antwort 4:</u></label>
+        <p id="answer4">{{ question["answer4"] }}</p>
 
-    <label for="answerRight"><u>Correct answer:</u></label>
-    <p id="answerRight">{{ question["answerRight"] }}</p>
+        <label for="answerRight"><u>Richtige Antwort:</u></label>
+        <p id="answerRight">{{ question["answerRight"] }}</p>
 
-    <label for="answerUser"><u>Your answer:</u></label>
-    <p id="answerUser">{{ question["answerUser"] }}</p>
+        <label for="answerUser"><u>Deine Antwort:</u></label>
+        <p id="answerUser">{{ question["answerUser"] }}</p>
+    </div>
 {% endblock %}
+    

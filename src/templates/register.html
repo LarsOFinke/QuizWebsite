@@ -1,53 +1,52 @@
 {% extends "base.html" %}
 
 {% block header %}
-Here you can sign up!
+!Hier Registrieren!
 {% endblock %}
 
 {% block content %}
     {% with messages = get_flashed_messages() %}
         {% if messages %}
 
-        <br>
-
+        
+        <!-- REGISTRIERUNGS-BENACHRICHTIGUNG -->
         <div class="flash-success">
             {% for msg in messages %}
-                <p align="center">{{msg}}</p>
+                <p>{{msg}}</p>
             {% endfor %}
         </div>
         
         {% endif %}
     {% endwith %}
 
-    <br>
+    
 
     <form method="POST" class="form">
-        <label for="username">Username:</label>
+        <label for="username">Benutzername:</label>
         <input type="text" id="username" name="username" required>
 
-        <br>
         
-        <label for="password">Password:</label>
+        
+        <label for="password">Passwort:</label>
         <input type="password" id="password" name="password" required>
 
-        <br>
         
-        <label for="password2">Confirm:</label>
+        
+        <label for="password2">Wiederholen:</label>
         <input type="password" id="password2" name="password2" required>
 
-        <br>
         
-        <div class="show-password" align="right">
-            <label for="showPassword">Show Password</label>
+        
+        <div class="show-password">
+            <label for="showPassword">Passwort Anzeigen!</label>
             <input type="checkbox" id="showPassword" onclick="togglePasswords()">
         </div>
         
-        <br>
-        <br>
+        
         
         <div class="btn-box">
             <button type="reset" class="btn primary">Clear</button>
-            <button type="submit" class="btn primary">Register</button>
+            <button type="submit" class="btn primary">Registrieren</button>
         </div>
     </form>
 {% endblock %}

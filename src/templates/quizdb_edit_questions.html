@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 align="center">Edit questions</h1>
+<h1>Fragen bearbeiten</h1>
 
         {% with messages = get_flashed_messages() %}
             {% if messages %}
+            <!-- FRAGEN-BEARBEITEN -->
             <div class="flash-success">
                 {% for msg in messages %}
-                    <p align="center">{{msg}}</p>
+                    <p>{{msg}}</p>
                 {% endfor %}
             </div>  
             {% endif %}
@@ -18,9 +19,9 @@
 
             <form action="" method="POST">
                 <div>
-                    <label for="category">Category:</label>
+                    <label for="category">Kategorie:</label>
                     <select name="category" id="category" onchange="this.form.submit()">
-                        <option value="">{% if not session.db_selected_category %}-- Select a Category --{% else %}{{session.db_selected_category}} {% endif %}</option>
+                        <option value="">{% if not session.db_selected_category %}-- Wähle eine Kategorie --{% else %}{{session.db_selected_category}} {% endif %}</option>
                         {% for category, category_id in categories.items() %}
                             <option value="{{ category_id }}">{{ category }}</option>
                         {% endfor %}
@@ -30,9 +31,9 @@
             
             <form action="" method="POST">
                 <div>
-                    <label for="topic" id="topic">Topic:</label>
+                    <label for="topic" id="topic">Thema:</label>
                     <select name="topic" id="topic" onchange="this.form.submit()">
-                        <option value="">{% if not session.db_topic_id %}-- Select a Topic --{% else %}{{session.db_selected_topic}}{% endif %}</option>
+                        <option value="">{% if not session.db_topic_id %}-- Wähle ein Thema --{% else %}{{session.db_selected_topic}}{% endif %}</option>
                         {% for topic, topic_id in topics.items() %}
                             <option value="{{ topic_id }}">{{ topic }}</option>
                         {% endfor %}
@@ -42,10 +43,10 @@
 
             <form action="" method="POST">
                 <div>
-                    <label for="question_nr">Question #:</label>
+                    <label for="question_nr">Frage #:</label>
                         <select name="question_nr" id="question_nr" onchange="this.form.submit()">
                             {% if not session.db_question_number %}
-                                <option value="">-- No Question selected --</option>
+                                <option value="">-- Keine Frage ausgewählt --</option>
                             {% endif %}
 
                             {% if session.db_topic_id %}
@@ -60,7 +61,7 @@
                 </div>
 
                 <div>
-                    <label for="question" id="question">Question:</label>
+                    <label for="question" id="question">Frage:</label>
                     {% if not session.quest %}
                         <input type="text" name="question">
                     {% else %}
@@ -69,7 +70,7 @@
                 </div>
 
                 <div>
-                    <label for="answer1">Answer 1:</label>
+                    <label for="answer1">Antwort 1:</label>
                     {% if not session.answers %}
                         <input type="text" name="answer1">
                     {% else %}
@@ -78,7 +79,7 @@
                 </div>
 
                 <div>
-                    <label for="answer2">Answer 2:</label>
+                    <label for="answer2">Antwort 2:</label>
                     {% if not session.answers %}
                         <input type="text" name="answer2">
                     {% else %}
@@ -87,7 +88,7 @@
                 </div>
 
                 <div>
-                    <label for="answer3">Answer 3:</label>
+                    <label for="answer3">Antwort 3:</label>
                     {% if not session.answers %}
                         <input type="text" name="answer3">
                     {% else %}
@@ -96,7 +97,7 @@
                 </div>
 
                 <div>
-                    <label for="answer4">Answer 4:</label>
+                    <label for="answer4">Antwort 4:</label>
                     {% if not session.answers %}
                         <input type="text" name="answer4">
                     {% else %}
@@ -105,7 +106,7 @@
                 </div>
 
                 <div>
-                    <label for="correct">Correct:</label>
+                    <label for="correct">Richtig:</label>
                     <select type="number" name="correct" id="correct">
                         {% if session.correct_answer %}
                             <option value="{{ correct }}">{{ correct }}</option>
@@ -121,8 +122,8 @@
 
                 <div class="btn-box">
                     <button type="reset" class="btn primary">Clear</button>
-                    <button type="submit" name="quiz_db" value="delete" class="btn primary">Delete Question</button>
-                    <button type="submit" name="quiz_db" value="edit" class="btn primary">Edit Question</button>
+                    <button type="submit" name="quiz_db" value="delete" class="btn primary">Frage Löschen</button>
+                    <button type="submit" name="quiz_db" value="edit" class="btn primary">Frage bearbeiten</button>
                 </div>
             </form>
         </div>

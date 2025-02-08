@@ -1,31 +1,33 @@
 {% extends "base.html" %}
 
 {% block header %}
-    Results
+    Ergebnis
 {% endblock %}
 
-{% block content %}
-<h2>You have scored <u>{{result}}%</u>!</h2>
+<!-- ERGEBNIS -->
 
-<br>
+{% block content %}
+<h2>Deine Punktzahl <u>{{result}}%</u>!</h2>
+
+
 
 <a href="/selection">
-    <button class="btn primary">Play again!</button>
+    <button class="btn primary">Nochmal!</button>
 </a>
 
-<br><br>
 
-<h2><u>Quiz details</u></h2>
+
+<h2><u>Quiz-Ergebnis</u></h2>
 
 
 <table>
     <tr>
-        <th>Question number</th>
+        <th>Anzahl der Fragen</th>
         {% if session.is_admin %}
-            <td>Database ID</td>
+            <td>Datenbank ID</td>
         {% endif %}
-        <th>Correct / Wrong</th>
-        <th>Question details</th>
+        <th>Richtig / Falsch</th>
+        <th>Quiz-Fragen</th>
     </tr>
 
     {% for question in questions_game %}
@@ -34,7 +36,7 @@
             {% if session.is_admin %}
                 <td>{{ question["questionID"] }}</td>
             {% endif %}
-            <td>{% if question["correctAnswered"] %} Correct {% else %} Wrong {% endif %}</td>
+            <td>{% if question["correctAnswered"] %} Richtig {% else %} Falsch {% endif %}</td>
             <td><a href="/quizresult/details/{{ loop.index }}" target="_blank">Details</a></td>
         </tr>
     {% endfor %}
