@@ -1,6 +1,6 @@
 ### PRIVATE ONES ###
-*/sessions
-*error_log.txt
+sessions/
+error_log.txt
 
 
 # Byte-compiled / optimized / DLL files

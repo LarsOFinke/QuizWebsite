@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from .crud import add_login, validate_login, get_all_usernames
+from .db.crud import add_login, validate_login, get_all_usernames
 
 
 auth = Blueprint('auth', __name__)
