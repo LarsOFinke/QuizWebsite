@@ -27,21 +27,26 @@ Bitte Anmelden oder Registrieren
         <form action="">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" placeholder="Benutzername" required>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input id="password" type="password" placeholder="Passwort" required>
             </div>
 
+            <!-- <div class="show-password">
+                <label for="showPassword">Passwort anzeigen!</label>
+                <input type="checkbox" id="showPassword" onclick="togglePassword()">
+            </div> -->
+
             <div class="remember-forgot">
-                <label><input type="checkbox"></label>
+                <label for="showPassword"><input type="checkbox" id="showPassword" onclick="togglePassword()">Passwort anzeigen!</label>
                 <a href="#">Passwort Vergessen?</a>
             </div>
 
             <button type="submit" class="btn">Login</button>
 
             <div class="register-link">
-                <p>Kein Account? <a href="#">Registrieren!</a></p>
+                <p>Noch kein Account? <a href="#">Registrieren!</a></p>
             </div>
         </form>
     </div>

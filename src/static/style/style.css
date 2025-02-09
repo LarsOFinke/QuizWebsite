@@ -35,7 +35,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("classroom.jpg") no-repeat;
+    background: url(../images/classroom.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -54,7 +54,11 @@ body {
     background-color: #A62C21 !important;
 }
 
+h1 {
+    color: #FFF;
+    margin-bottom: 1rem;
 
+}
 
 /* ### NAVBAR GENERAL ### */
 
@@ -95,22 +99,6 @@ a:visited {
 
 a:hover {
     color: var(--light-red);
-}
-
-/* VIEWPORT SWITCH */
-#mobile-nav {
-    display: block;
-}
-#desktop-nav {
-    display: none;
-}
-@media (min-width: 767px) {
-    #mobile-nav {
-        display: none;
-    }
-    #desktop-nav {
-        display: inline-block;
-    }
 }
 
 
@@ -169,6 +157,22 @@ a:hover {
 }
 
 
+#mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    
+    #desktop-nav {
+        display: none;
+    }
+
+    #mobile-nav {
+        display: block;
+    }
+
+}
+
 
 /* ### NAVBAR DESKTOP ### */
 
@@ -188,12 +192,12 @@ a:hover {
 /* === LOGIN-FORM === */
 
 .wrapper {
-    width: 420px;
+    width: 440px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
+    color: #FFF;
     border-radius: 10px;
     padding: 30px 40px;
     margin-left: auto;
@@ -221,12 +225,12 @@ a:hover {
     border: 2px solid rgba(255, 255, 255, .2);
     border-radius: 40px;
     font-size: 16px;
-    color: #fff;    
+    color: #FFF;    
     padding: 20px 45px 20px 20px;
 }
 
 .input-box input::placeholder {
-    color: #fff;
+    color: #FFF;
 }
 
 .input-box i {
@@ -237,6 +241,10 @@ a:hover {
     font-size: 20px;
 }
 
+.wrapper .show-password {
+    margin: 2rem;
+}
+
 .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -245,12 +253,12 @@ a:hover {
 }
 
 .remember-forgot label input {
-    accent-color: #fff;
+    accent-color: #FFF;
     margin-right: 3px;
 }
 
 .remember-forgot a {
-    color: #fff;
+    color: #FFF;
     text-decoration: none;
 }
 
@@ -261,11 +269,11 @@ a:hover {
 .wrapper .btn {
     width: 100%;
     height: 45px;
-    background: #fff;
+    background: #FFF;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
     color: #333;
@@ -279,7 +287,7 @@ a:hover {
 }
 
 .register-link p a {
-    color: #fff;
+    color: #FFF;
     text-decoration: none;
     font-weight: 600;
 }
