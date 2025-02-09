@@ -299,6 +299,21 @@ a:hover {
     font-weight: 600;
 }
 
+.wrapper .btn-gast {
+    width: 100%;
+    height: 45px;
+    background: #FFF;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 700;
+}
+
+
 .wrapper .register-link {
     font-size: 14.5px;
     text-align: center;
