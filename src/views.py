@@ -197,31 +197,33 @@ def quizdb_catstops():
 
 @views.route('/quizdb/addquestions', methods=['GET','POST'])
 def quizdb_addquestions():
+    ### CHECK IF ADMIN, if not --> redirect back to Login-Page ###
     if "is_admin" not in session or not session["is_admin"]:
         return redirect("/")
     
-    topics = {}
-    
-    selected_category_id = None
-    categories: dict = get_all_categories()  # {"name": id}   # Fetch all categories to display in the dropdown
+    categories: dict = get_all_categories()  # Fetch all categories to display in the dropdown - {"name": id} 
     
     if request.method == 'POST':
-        if 'category' in request.form:  # Category was selected
-            selected_category_id = request.form.get('category')    # Get category_id from the form
-            selected_category_id = int(selected_category_id)
-            session["db_category_id"] = selected_category_id   # Save the selected category-ID in the session
+        if 'category' in request.form:
+            ### RESET SESSION VALUES ###
+            if "db_topic_id" in session:
+                session.pop("db_topic_id"); session.pop("db_selected_topic")
             
-            for category, categ_id in categories.items():   # Iterate over the categories-dictionary from the DB
-                if categ_id == selected_category_id:   # Find the selected category name
-                    session["db_selected_category"] = category    # Save the selected category-name in the session
+            session["db_category_id"] = int(request.form.get('category') )      # Get category_id from the form and save it in the session
+            
+            for category, categ_id in categories.items():       # Iterate over the topics-dictionary from the DB
+                if categ_id == session["db_category_id"]:       # Find the selected topic name
+                    session["db_selected_category"] = category  # Save the selected topic-name in the session
                     break
             
-            topics = get_topics_by_category(selected_category_id)  # Fetch topics based on selected category # {"name": id} -> str: int
+            topics: dict = get_topics_by_category(session["db_category_id"])    # Fetch topics based on selected category - {"name": id}
             
-        elif 'topic' in request.form:   # Topic was selected
-            selected_topic_id = request.form.get('topic')
-            session['db_topic_id'] = selected_topic_id  # Save the selected topic-ID in the session
+            return render_template('quizdb_add_questions.html', categories=categories, topics=topics)
+        
             
+        elif 'topic' in request.form:
+            ### FETCH DATA FROM THE FORM ###
+            session['db_topic_id'] = int(request.form.get('topic'))
             question: str = request.form.get('question')
             answer_1: str = request.form.get('answer1')
             answer_2: str = request.form.get('answer2')
@@ -229,23 +231,24 @@ def quizdb_addquestions():
             answer_4: str = request.form.get('answer4')
             answer_Correct: int = request.form.get('correct')
 
-            topics = get_topics_by_category(session["db_category_id"])
-            for topic, topic_id in topics.items():
-                if topic_id == int(selected_topic_id):
-                    session["db_selected_topic"] = topic
+            topics: dict = get_topics_by_category(session["db_category_id"])    # Fetch topics based on selected category - {"name": id}
+            for topic, topic_id in topics.items():          # Iterate over the topics-dictionary from the DB
+                if topic_id == session['db_topic_id']:      # Find the selected topic name
+                    session["db_selected_topic"] = topic    # Save the selected topic-name in the session
                     break
             
             action: str = request.form.get('quiz_db')
-        
             match action:
                 case "add":
-                    add_question(question, int(session["db_topic_id"]))
                     question_id: int = get_question_id(question)
+                    add_question(question, int(session["db_topic_id"]))
                     add_answers(answer_1, answer_2, answer_3, answer_4, answer_Correct, question_id)
                     flash("Question successfully added!", "info")
+                    
+            return render_template('quizdb_add_questions.html', categories=categories, topics=topics)
         
         
-    return render_template('quizdb_add_questions.html', categories=categories, topics=topics)
+    return render_template('quizdb_add_questions.html', categories=categories)
 
 
 @views.route("/quizdb/editquestions", methods=["GET", "POST"])
@@ -253,7 +256,6 @@ def quizdb_editquestions():
     ### CHECK IF ADMIN, if not --> redirect back to Login-Page ###
     if "is_admin" not in session or not session["is_admin"]:
         return redirect("/")
-    ###                                                        ###
         
     categories: dict = get_all_categories()     # Fetch all categories to display in the dropdown - {"category": id}
     
@@ -266,7 +268,6 @@ def quizdb_editquestions():
                 session.pop("question_ids")
             if "db_question_number" in session:
                 session.pop("db_question_number")
-            ###                      ###
             
             session["selected_category_id"] = int(request.form.get('category')) # Get category_id from the form and save it in the session
             for category, categ_id in categories.items():                       # Iterate over the categories-dictionary from the DB
@@ -285,14 +286,13 @@ def quizdb_editquestions():
                 session.pop("question_ids")
             if "db_question_number" in session:
                 session.pop("db_question_number")
-            ###                      ###
             
             session['db_topic_id'] = int(request.form.get('topic'))  # Save the selected topic-ID in the session
             
             topics: dict = get_topics_by_category(session["selected_category_id"])  # Fetch topics based on selected category - {"topic_name" : topic_id}
             
-            for topic, topic_id in topics.items():          # Iterate over the categories-dictionary from the DB
-                if topic_id == session['db_topic_id']:      # Find the selected category name
+            for topic, topic_id in topics.items():          # Iterate over the topics-dictionary from the DB
+                if topic_id == session['db_topic_id']:      # Find the selected topic name
                     session["db_selected_topic"] = topic    # Save the selected topic-name in the session
                     break
             
@@ -312,7 +312,6 @@ def quizdb_editquestions():
             question: str = get_question(question_id) 
             answers: list = get_answers(question_id)
             correct_answer = get_correct_answer(question_id)
-            ###                                             ###
 
             action: str = request.form.get('quiz_db')
             match action:       
@@ -326,7 +325,6 @@ def quizdb_editquestions():
                     answer_4: str = request.form.get('answer4')
                     answer_Correct: int = request.form.get('correct')
                     answer_id: int = get_answers_id(answer_1, answer_2, answer_3, answer_4, answer_Correct)
-                    ###                          ###
                     
                     edit_answers(answer_1, answer_2, answer_3, answer_4, answer_Correct, answer_id)
                     edit_question(question, session['db_topic_id'], question_id)
@@ -335,7 +333,6 @@ def quizdb_editquestions():
                     ### RESET SESSION VALUES ###
                     session.pop("selected_category_id"); session.pop("db_selected_category"); session.pop("db_topic_id")
                     session.pop("db_selected_topic"); session.pop("question_ids"); session.pop("db_question_number")
-                    ###                      ###  
                     
                 case "delete":
                     delete_answers(question_id)
@@ -345,7 +342,6 @@ def quizdb_editquestions():
                     ### RESET SESSION VALUES ###
                     session.pop("selected_category_id"); session.pop("db_selected_category"); session.pop("db_topic_id")
                     session.pop("db_selected_topic"); session.pop("question_ids"); session.pop("db_question_number")
-                    ###                      ### 
         
             return render_template('quizdb_edit_questions.html', categories=categories, topics=topics, question=question, answers=answers, correct=correct_answer)
 

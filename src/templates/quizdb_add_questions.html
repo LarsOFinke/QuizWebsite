@@ -14,13 +14,20 @@
             {% endif %}
         {% endwith %}
 
+
+
         <!-- ADMIN-FRAGEN-HINZUFÜGEN -->
         <div class="form">
-            <form action="" method="POST">
+            <form method="POST">
                 <div>
                     <label for="category">Kategorie:</label>
                     <select name="category" id="category" onchange="this.form.submit()">
-                        <option value="{{ session.db_category_id }}">{% if not session.db_selected_category %}-- Wähle eine Kategorie --{% else %}{{session.db_selected_category}} {% endif %}</option>
+                        {% if not session.db_selected_category %}
+                            <option value="">-- Wähle eine Kategorie --</option>
+                        {% else %}
+                            <option value="{{ session.db_category_id }}">{{session.db_selected_category}}</option>
+                        {% endif %}
+
                         {% for category, category_id in categories.items() %}
                             <option value="{{ category_id }}">{{ category }}</option>
                         {% endfor %}
@@ -28,14 +35,22 @@
                 </div>
             </form>
             
-            <form action="" method="POST">
+
+            <form method="POST">
                 <div>
                     <label for="topic" id="topic">Thema:</label>
                     <select name="topic" id="topic" onchange="this.form.submit()">
-                        <option value="{{ session.db_topic_id }}">{% if not session.db_selected_topic %}-- Wähle ein Thema --{% else %}{{session.db_selected_topic}} {% endif %}</option>
-                        {% for topic, topic_id in topics.items() %}
-                            <option value="{{ topic_id }}">{{ topic }}</option>
-                        {% endfor %}
+                        {% if not session.db_selected_topic %}
+                            <option value="-- Wähle ein Thema --"></option>
+                        {% else %}
+                            <option value="{{ session.db_topic_id }}">{{session.db_selected_topic}}</option>
+                        {% endif %}
+
+                        {% if topics %}
+                            {% for topic, topic_id in topics.items() %}
+                                <option value="{{ topic_id }}">{{ topic }}</option>
+                            {% endfor %}
+                        {% endif %}
                     </select>
                 </div>
 
