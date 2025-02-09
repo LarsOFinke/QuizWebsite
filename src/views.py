@@ -15,7 +15,7 @@ views = Blueprint('views', __name__)
 
 @views.route("/image/<question_id>")
 def serve_image(question_id: str):
-    """This route serves to return an image to HTML. Implement it as a src={{ url_for('server_image', question_id=XXX) }}.
+    """This route serves to return an image to HTML. Implement it as a src={{ url_for('serve_image', question_id=XXX) }}.
 
     Args:
         question_id (str): String of the question_id from the database.

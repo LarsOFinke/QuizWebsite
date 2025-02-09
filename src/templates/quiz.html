@@ -15,12 +15,15 @@
                                 <h3>{{ question.questionText }}</h3>
                             </div>
                         </div>
+                        
+                        {% if question.hasImage %}
                         <hr>
                         <div class="row">
                             <div class="col-6">
-                            <img src="{{ url_for('server_image', question_id=question.questionID) }}" alt="FEUER">
+                            <img src="{{ url_for('views.serve_image', question_id=question.questionID) }}" alt="Bild zur Frage">
                             </div>
                         </div>
+                        {% endif %}
                         <hr>
                         <div class="row" id="answer-box">
                             <div class="col-6">
