@@ -1,14 +1,31 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response
+from io import BytesIO
 from .db.crud import (add_category, get_all_categories, get_category_name,
                   add_topic, get_topics_by_category, get_questions_by_topic, get_topic_name,
                   add_question, get_question, get_question_id, edit_question, delete_question, get_all_questions,
                   add_answers, get_answers_id, get_answers, get_correct_answer, edit_answers, delete_answers,
-                  add_highscore, get_highscores_full, get_highscores_category, get_highscores_topic)
+                  add_highscore, get_highscores_full, get_highscores_category, get_highscores_topic,
+                  add_image, get_image, edit_image, delete_image)
 from .utils.questions import provide_questions
 from datetime import datetime
 
 
 views = Blueprint('views', __name__)
+
+
+@views.route("/image/<question_id>")
+def serve_image(question_id: str):
+    """This route serves to return an image to HTML. Implement it as a src={{ url_for('server_image', question_id=XXX) }}.
+
+    Args:
+        question_id (str): String of the question_id from the database.
+
+    Returns:
+        A HTML-readable response of an images binary data.
+    """
+    image_binary = get_image(int(question_id))    # 
+    image_stream = BytesIO(image_binary) # Use io.BytesIO to wrap binary data
+    return Response(image_stream, mimetype='image/jpeg')    # Return the image as a response with the correct MIME type
 
 
 @views.route('/selection', methods=['GET', 'POST'])

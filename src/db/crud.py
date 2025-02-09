@@ -555,23 +555,32 @@ def delete_answers(question_id: int) -> bool:
 
 
 def add_image(image_path: str, question_id: int) -> bool :
+    """Adds an image in binary form to the database.
+
+    Args:
+        image_path (str): Path of the image location to convert._
+        question_id (int): The question_id from the database.
+
+    Returns:
+        bool: _description_
+    """
     sql: str = "INSERT INTO tblImages(ImageBinary, QuestionIDRef) VALUES (?,?)"
     image_binary: bytes = image_to_binary(image_path)
     return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
-def get_image(question_id: int):
+def get_image(question_id: int) -> bytes:
     sql: str = "SELECT ImageBinary FROM tblImages WHERE QuestionIDRef = ?"
-    return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)
+    return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)[0][0]
 
 
-def edit_image(image_path: str, question_id: int):
+def edit_image(image_path: str, question_id: int) -> bool:
     sql: str = "UPDATE tblImages SET ImageBinary = ? WHERE QuestionIDRef = ?"
     image_binary: bytes = image_to_binary(image_path)
     return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
-def delete_image(question_id: int):
+def delete_image(question_id: int) -> bool:
     sql: str = "DELETE FROM tblImages WHERE QuestionIDRef = ?"
     return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ)
 
