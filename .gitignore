@@ -1,5 +1,5 @@
 ### PRIVATE ONES ###
-sessions/
+sessions/*
 error_log.txt
 
 

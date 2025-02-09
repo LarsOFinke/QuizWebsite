@@ -1,13 +1,14 @@
 import sqlite3, os, sys # FOR DB
 from typing import Any, List, Tuple, Optional   # FOR "execute_query" FUNCTIONS
 from .. import logging  # GET .ENV CONSTANTS AND LOGGING
+from ..utils.utility import image_to_binary
 from werkzeug.security import generate_password_hash, check_password_hash # LOGIN-SYSTEM SECURITY
 
 
 # SET DB-Connection String
-CONNECTIONSTRING_LOGIN = os.path.join(os.path.dirname(__file__), "db", "LoginDB.db")
-CONNECTIONSTRING_QUIZ = os.path.join(os.path.dirname(__file__), "db", "QuizDB.db")
-CONNECTIONSTRING_SCORES = os.path.join(os.path.dirname(__file__), "db", "ScoresDB.db")
+CONNECTIONSTRING_LOGIN = os.path.join(os.path.dirname(__file__), "LoginDB.db")
+CONNECTIONSTRING_QUIZ = os.path.join(os.path.dirname(__file__), "QuizDB.db")
+CONNECTIONSTRING_SCORES = os.path.join(os.path.dirname(__file__), "ScoresDB.db")
 
 
 # SET DEFAULT RETURN VALUES FOR CRUD
@@ -94,7 +95,7 @@ def create_quiz_db() -> bool:
             sql: str = "CREATE TABLE tblImages(" \
                         "ImageID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " \
                         "ImageBinary BLOB, " \
-                        "QuestionIDRef INTEGER, " \
+                        "QuestionIDRef INTEGER NOT NULL UNIQUE, " \
                         "FOREIGN KEY(QuestionIDRef) REFERENCES tblQuestion(QuestionID))"
             cursor.execute(sql)
             
@@ -553,21 +554,26 @@ def delete_answers(question_id: int) -> bool:
     return execute_query(sql, (question_id,), CONNECTIONSTRING_QUIZ)
 
 
-def add_image(image_binary: str, question_id: int):
+def add_image(image_path: str, question_id: int) -> bool :
     sql: str = "INSERT INTO tblImages(ImageBinary, QuestionIDRef) VALUES (?,?)"
-    return execute_query(sql=sql, params=(image_binary, question_id) , fetch=True)
+    image_binary: bytes = image_to_binary(image_path)
+    return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
-def get_image():
-    pass
+def get_image(question_id: int):
+    sql: str = "SELECT ImageBinary FROM tblImages WHERE QuestionIDRef = ?"
+    return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)
 
 
-def edit_image():
-    pass
+def edit_image(image_path: str, question_id: int):
+    sql: str = "UPDATE tblImages SET ImageBinary = ? WHERE QuestionIDRef = ?"
+    image_binary: bytes = image_to_binary(image_path)
+    return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
-def delete_image():
-    pass
+def delete_image(question_id: int):
+    sql: str = "DELETE FROM tblImages WHERE QuestionIDRef = ?"
+    return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
 
@@ -743,6 +749,13 @@ if __name__ == "__main__":
     # print(quest_ids)
     
     
+    ## IMAGES ##
+    
+    # print(add_image("src\static\images\image.png", 1))
+    # print(get_image(1))
+    # print(edit_image("src\static\images\image.png", 1))
+    # print(delete_image(1))
+    
     
     
     ### SCORES ###
@@ -750,5 +763,6 @@ if __name__ == "__main__":
     # print(get_highscores_category("Python"))
     # print(get_highscores_topic("Python", "Grundlagen"))
     # print(get_highscores_full())
+    
     
     pass

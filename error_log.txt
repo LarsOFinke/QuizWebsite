@@ -29,3 +29,146 @@
 2025-02-08 23:51:06,226 - INFO -  * Restarting with stat
 2025-02-08 23:51:06,527 - WARNING -  * Debugger is active!
 2025-02-08 23:51:06,529 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:31:59,738 - ERROR - Could not create login-database!
+2025-02-09 00:31:59,739 - ERROR - Could not create login-database! Something went wrong...
+2025-02-09 00:32:04,078 - ERROR - Could not create login-database!
+2025-02-09 00:32:04,078 - ERROR - Could not create login-database! Something went wrong...
+2025-02-09 00:32:31,820 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:32:31,820 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:32:31,821 - INFO -  * Restarting with stat
+2025-02-09 00:32:32,137 - WARNING -  * Debugger is active!
+2025-02-09 00:32:32,140 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:32:34,824 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:34] "GET / HTTP/1.1" 200 -
+2025-02-09 00:32:34,914 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:34] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:34,917 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:34] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:35,178 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-09 00:32:40,443 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:40] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-02-09 00:32:40,452 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:40] "GET /selection HTTP/1.1" 200 -
+2025-02-09 00:32:40,476 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:40] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:40,478 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:40] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:44,039 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:44] "GET /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:32:44,059 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:44] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:44,061 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:44] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:47,783 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:47] "POST /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:32:47,805 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:47] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:47,805 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:47] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:52,203 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "GET /quizdb/editquestions HTTP/1.1" 200 -
+2025-02-09 00:32:52,223 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:52,225 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:52,593 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "GET /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:32:52,613 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:52,615 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:52] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:53,724 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:53] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:32:53,746 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:53] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:53,748 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:53] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:56,519 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:56] "GET /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:32:56,544 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:56] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:32:56,546 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:56] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:59,364 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:59] "POST /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:32:59,385 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:59] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:32:59,387 - INFO - 127.0.0.1 - - [09/Feb/2025 00:32:59] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:33:01,484 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:01] "POST /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:33:01,507 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:01] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:33:01,509 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:01] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:33:05,145 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:05] "GET /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:33:05,175 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:05] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:33:05,177 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:05] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:33:06,652 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:06] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:33:06,683 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:06] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:33:06,684 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:06] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:33:07,895 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:07] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:33:07,916 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:07] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:33:07,918 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:07] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:33:19,306 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:19] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:33:19,327 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:19] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:33:19,330 - INFO - 127.0.0.1 - - [09/Feb/2025 00:33:19] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:36:03,309 - INFO -  * Detected change in 'c:\\Users\\User\\Desktop\\CodingProjekte\\Repositories\\QuizWebsite\\src\\db\\crud.py', reloading
+2025-02-09 00:36:03,350 - INFO -  * Restarting with stat
+2025-02-09 00:40:01,448 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:40:01,448 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:40:01,449 - INFO -  * Restarting with stat
+2025-02-09 00:40:01,773 - WARNING -  * Debugger is active!
+2025-02-09 00:40:01,776 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:44:00,083 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:00,213 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:44:00,213 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:44:00,214 - INFO -  * Restarting with stat
+2025-02-09 00:44:00,445 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:00,518 - WARNING -  * Debugger is active!
+2025-02-09 00:44:00,520 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:44:13,780 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:13,861 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:44:13,861 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:44:13,862 - INFO -  * Restarting with stat
+2025-02-09 00:44:14,096 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:14,166 - WARNING -  * Debugger is active!
+2025-02-09 00:44:14,168 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:44:17,787 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:17,787 - ERROR - An error occurred: FOREIGN KEY constraint failed
+2025-02-09 00:44:17,797 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:17] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:44:17,876 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:17] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:17,884 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:17] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:19,780 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:19] "GET /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:44:19,801 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:19] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:19,802 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:19] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:22,434 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:22] "POST /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:44:22,457 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:22] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:22,457 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:22] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:26,193 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:26] "POST /quizdb/addcatstops HTTP/1.1" 200 -
+2025-02-09 00:44:26,213 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:26] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:26,214 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:26] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:27,722 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:27] "GET /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:44:27,742 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:27] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:27,747 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:27] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:34,368 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:34] "POST /quizdb/addquestions HTTP/1.1" 200 -
+2025-02-09 00:44:34,387 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:34] "[36mGET /static/script/script.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:34,389 - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:34] "[36mGET /static/style/style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:45:37,566 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:45:37,568 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:45:37,569 - INFO -  * Restarting with stat
+2025-02-09 00:45:37,814 - ERROR - An error occurred: UNIQUE constraint failed: tblImages.QuestionIDRef
+2025-02-09 00:45:37,886 - WARNING -  * Debugger is active!
+2025-02-09 00:45:37,888 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:47:36,714 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:47:36,714 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:47:36,715 - INFO -  * Restarting with stat
+2025-02-09 00:47:37,015 - WARNING -  * Debugger is active!
+2025-02-09 00:47:37,017 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:48:16,530 - ERROR - An error occurred: UNIQUE constraint failed: tblImages.QuestionIDRef
+2025-02-09 00:48:16,611 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:48:16,611 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:48:16,612 - INFO -  * Restarting with stat
+2025-02-09 00:48:16,845 - ERROR - An error occurred: UNIQUE constraint failed: tblImages.QuestionIDRef
+2025-02-09 00:48:16,916 - WARNING -  * Debugger is active!
+2025-02-09 00:48:16,918 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 00:50:18,126 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:50:18,126 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:50:18,127 - INFO -  * Restarting with stat
+2025-02-09 00:50:19,401 - WARNING -  * Debugger is active!
+2025-02-09 00:50:19,403 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 01:06:03,644 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 01:06:03,644 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 01:06:03,645 - INFO -  * Restarting with stat
+2025-02-09 01:06:03,949 - WARNING -  * Debugger is active!
+2025-02-09 01:06:03,951 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 01:27:33,125 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 01:27:33,125 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 01:27:33,126 - INFO -  * Restarting with stat
+2025-02-09 01:27:33,432 - WARNING -  * Debugger is active!
+2025-02-09 01:27:33,434 - INFO -  * Debugger PIN: 129-409-100
+2025-02-09 01:28:26,031 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 01:28:26,032 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 01:28:26,033 - INFO -  * Restarting with stat
+2025-02-09 01:28:26,334 - WARNING -  * Debugger is active!
+2025-02-09 01:28:26,337 - INFO -  * Debugger PIN: 129-409-100
