@@ -1,20 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <h1>!-> Quiz-Zeit <-!</h1>
 
-        <div class="centered">
-            <form method="POST" class="form">
-                <h3>{{ question.questionText }}</h3>
-
-                <hr>
-
-                <button class="btn primary" name="user_answer" value="1">{{question.answer1}}</button>
-                <button class="btn primary" name="user_answer" value="2">{{question.answer2}}</button>
-                <button class="btn primary" name="user_answer" value="3">{{question.answer3}}</button>
-                <button class="btn primary" name="user_answer" value="4">{{question.answer4}}</button>
-            </form>
+    <div class="content">
+        <div>
+            <h1></h1>
+    
+                <div class="wrapper" id="quiz-wrapper">
+                    
+                    
+                    <form method="POST" class="form">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>{{ question.questionText }}</h3>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                            <img src="{{ url_for('server_image', question_id=question.questionID) }}" alt="FEUER">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="answer-box">
+                            <div class="col-6">
+                                <button class="btn-antworten" name="user_answer" value="1">{{question.answer1}}</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn-antworten" name="user_answer" value="2">{{question.answer2}}</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn-antworten" name="user_answer" value="3">{{question.answer3}}</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn-antworten" name="user_answer" value="4">{{question.answer4}}</button>
+                            </div>       
+                            
+                        </div>
+                    </form>
+                </div>
         </div>
     </div>
+
+
+
 {% endblock %}

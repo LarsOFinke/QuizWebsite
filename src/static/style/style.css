@@ -43,6 +43,7 @@ body {
     background: url(../images/classroom.jpg) no-repeat;
     background-size: cover;
     background-position: center;
+    backdrop-filter: blur(4px);
 }
 
 
@@ -193,6 +194,29 @@ a:hover {
 }
 
 
+/* === GRID-SYSTEM === */
+.col-1 { width: 16.666%; }
+
+.col-2 { width: 33.333%; }
+
+.col-3 { width: 50%;     }
+
+.col-4 { width: 66.666%; }
+
+.col-6 { width: 100%;    }
+
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+[class*="col-"] {
+    float: left;
+    min-height: 1px;
+    padding: .8rem;
+}
 
 /* === LOGIN-FORM === */
 
@@ -213,6 +237,11 @@ a:hover {
     font-size: 36px;
     text-align: center;
 }
+
+#quiz-wrapper h3 {
+    text-align: center;
+}
+
 
 .wrapper .input-box {
     position: relative;
@@ -329,3 +358,232 @@ a:hover {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.btn-antworten {
+    width: 100%;
+}
+
+/* === MEDIA-QUESTIONS === */
+
+@media (max-width: 1920px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 45vh;
+    
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 0;
+        margin-top: 4rem;
+        text-align: center;
+        
+    }
+
+    #answer-box .col-6  {
+        width: 25%;  
+    }
+
+    
+
+    #quiz-wrapper .btn-antworten {
+        font-size: 1.6rem;
+        height: 200px;
+    }
+
+
+}
+
+@media (max-width: 1600px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 40vh;
+    
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 0;
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    #answer-box .col-6  {
+        width: 25%;  
+    }
+
+    #quiz-wrapper .btn-antworten {
+        font-size: 1.5rem;
+        height: 150px;
+    }
+
+
+}
+
+@media (max-width: 1440px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 30vh;
+    
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 0;
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    #answer-box .col-6  {
+        width: 25%;  
+    }
+
+    #quiz-wrapper .btn-antworten {
+        font-size: 1.3rem;
+        height: 130px;
+    }
+
+}
+
+
+@media (max-width: 1024px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 30vh;
+    
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    #answer-box .col-6  {
+        width: 50%;
+        
+    }
+
+    #quiz-wrapper .btn-antworten {
+        font-size: 1.2rem;
+        
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 20vh;
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 0;
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    #quiz-wrapper .btn-antworten {
+        font-size: 1.2rem;
+        height: auto;  
+    }
+
+    #answer-box .col-6  {
+        width: 100%;  
+    }
+
+
+}
+
+@media (max-width: 480px) {
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 20vh;
+        
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 8px;
+        text-align: center;
+    }
+
+    #quiz-wrapper .btn-antworten {
+
+        font-size: 1.1rem;
+
+    }
+
+}
+
+@media (max-width: 320px) {
+
+
+    #quiz-wrapper img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 20vh;
+        
+    }
+
+    #quiz-wrapper {
+        width: 90%;
+        padding: 8px;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+/* @media (max-width: 1024px) {
+
+    .col-1 { width: 33.333%; }
+
+}
+
+@media (max-width: 768px) {
+
+    .col-1 { width: 50%; }
+
+    .col-2 { width: 100%; }
+
+    .col-3 { width: 100%; }
+
+    .col-4 { width: 100%; }
+
+}
+
+@media (max-width: 480px) {
+
+    .col-1 { width: 100%; }
+
+    .col-2 { width: 100%; }
+
+    .col-3 { width: 100%; }
+
+    .col-4 { width: 100%; }
+
+} */
