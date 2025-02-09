@@ -261,8 +261,7 @@ def quizdb_editquestions():
         if 'category' in request.form:
             ### RESET SESSION VALUES ###
             if "db_topic_id" in session:
-                session.pop("db_topic_id")
-                session.pop("db_selected_topic")
+                session.pop("db_topic_id"); session.pop("db_selected_topic")
             if "question_ids" in session:
                 session.pop("question_ids")
             if "db_question_number" in session:
@@ -334,12 +333,8 @@ def quizdb_editquestions():
                     flash("Question successfully edited!", "info")
                     
                     ### RESET SESSION VALUES ###
-                    session.pop("selected_category_id")
-                    session.pop("db_selected_category")
-                    session.pop("db_topic_id")
-                    session.pop("db_selected_topic")
-                    session.pop("question_ids")
-                    session.pop("db_question_number")
+                    session.pop("selected_category_id"); session.pop("db_selected_category"); session.pop("db_topic_id")
+                    session.pop("db_selected_topic"); session.pop("question_ids"); session.pop("db_question_number")
                     ###                      ###  
                     
                 case "delete":
@@ -348,12 +343,8 @@ def quizdb_editquestions():
                     flash("Question successfully deleted!", "info")
                     
                     ### RESET SESSION VALUES ###
-                    session.pop("selected_category_id")
-                    session.pop("db_selected_category")
-                    session.pop("db_topic_id")
-                    session.pop("db_selected_topic")
-                    session.pop("question_ids")
-                    session.pop("db_question_number")
+                    session.pop("selected_category_id"); session.pop("db_selected_category"); session.pop("db_topic_id")
+                    session.pop("db_selected_topic"); session.pop("question_ids"); session.pop("db_question_number")
                     ###                      ### 
         
             return render_template('quizdb_edit_questions.html', categories=categories, topics=topics, question=question, answers=answers, correct=correct_answer)
