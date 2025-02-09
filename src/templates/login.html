@@ -18,42 +18,35 @@ Bitte Anmelden oder Registrieren
         {% endif %}
     {% endwith %}
 
-    
 
-    <!-- LOGIN-FENSTER -->
 
     
-    
-        <form method="POST" class="form">
-            <div class="login-eingabe">
-                <label for="username">Benutzername:</label>
-                <input type="text" name="username">
+    <!-- LOGIN-FORM -->
 
-                
-
-                <label for="password">Passwort:</label>
-                <input type="password" id="password" name="password">
+    <div class="wrapper">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
             </div>
-            
-
-            <div class="show-password">
-                <label for="showPassword">Passwort anzeigen!</label>
-                <input type="checkbox" id="showPassword" onclick="togglePassword()">
+            <div class="input-box">
+                <input type="password" placeholder="Password" required>
             </div>
 
-            
-            
-            <!-- LOGIN-BUTTONS -->
-
-            <div class="btn-box">
-                <button type="reset" class="btn primary">Clear</button>
-                        
-                <button type="submit" class="btn primary" name="login" value="login">Login</button>
+            <div class="remember-forgot">
+                <label><input type="checkbox"></label>
+                <a href="#">Passwort Vergessen?</a>
             </div>
 
-        
-                    
-            <button type="submit" class="btn primary" name="login" value="guest">Join as Guest</button>
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register-link">
+                <p>Kein Account? <a href="#">Registrieren!</a></p>
+            </div>
         </form>
+    </div>
+
+
+
 
 {% endblock %}
