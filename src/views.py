@@ -6,7 +6,7 @@ from .db.crud import (add_category, get_all_categories, get_category_name,
                   add_answers, get_answers_id, get_answers, get_correct_answer, edit_answers, delete_answers,
                   add_highscore, get_highscores_full, get_highscores_category, get_highscores_topic,
                   add_image, get_image, edit_image, delete_image)
-from .utils.questions import provide_questions
+from ..models.questions import provide_questions
 from datetime import datetime
 
 

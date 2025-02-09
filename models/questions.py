@@ -1,4 +1,4 @@
-from ..db.crud import get_answers, get_correct_answer, get_all_questions
+from ..src.db.crud import get_answers, get_correct_answer, get_all_questions
 
 
 def create_question(questionID: int, questionText: str, answer1: str, answer2: str, answer3: str, answer4: str, answerRight: int):
