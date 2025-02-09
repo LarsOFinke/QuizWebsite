@@ -314,7 +314,7 @@ def quizdb_editquestions():
             selected_question_nr = request.form.get("question_nr")
             selected_question_nr = int(selected_question_nr)
             session["db_question_number"] = selected_question_nr
-            question_id: int = session["question_ids"][str(selected_question_nr)]
+            question_id: int = session["question_ids"][selected_question_nr]
 
             session["quest"] = get_question(question_id) 
             session["answers"] = get_answers(question_id)
