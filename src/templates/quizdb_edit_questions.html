@@ -86,44 +86,44 @@
 
                 <div>
                     <label for="answer1">Antwort 1:</label>
-                    {% if not session.answers %}
+                    {% if not answers %}
                         <input type="text" name="answer1">
                     {% else %}
-                        <input type="text" name="question" value="{{ session.answers[0] }}">
+                        <input type="text" name="question" value="{{ answers[0] }}">
                     {% endif %}
                 </div>
 
                 <div>
                     <label for="answer2">Antwort 2:</label>
-                    {% if not session.answers %}
+                    {% if not answers %}
                         <input type="text" name="answer2">
                     {% else %}
-                        <input type="text" name="question" value="{{ session.answers[1] }}">
+                        <input type="text" name="question" value="{{ answers[1] }}">
                     {% endif %}
                 </div>
 
                 <div>
                     <label for="answer3">Antwort 3:</label>
-                    {% if not session.answers %}
+                    {% if not answers %}
                         <input type="text" name="answer3">
                     {% else %}
-                        <input type="text" name="question" value="{{ session.answers[2] }}">
+                        <input type="text" name="question" value="{{ answers[2] }}">
                     {% endif %}
                 </div>
 
                 <div>
                     <label for="answer4">Antwort 4:</label>
-                    {% if not session.answers %}
+                    {% if not answers %}
                         <input type="text" name="answer4">
                     {% else %}
-                        <input type="text" name="question" value="{{ session.answers[3] }}">
+                        <input type="text" name="question" value="{{ answers[3] }}">
                     {% endif %}
                 </div>
 
                 <div>
                     <label for="correct">Richtig:</label>
                     <select type="number" name="correct" id="correct">
-                        {% if session.correct_answer %}
+                        {% if correct %}
                             <option value="{{ correct }}">{{ correct }}</option>
                             <option value="1">1</option>
                             <option value="2">2</option>

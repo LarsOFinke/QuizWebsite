@@ -290,13 +290,13 @@ def quizdb_editquestions():
             session['db_topic_id'] = int(request.form.get('topic'))  # Save the selected topic-ID in the session
             
             topics: dict = get_topics_by_category(session["selected_category_id"])  # Fetch topics based on selected category - {"topic_name" : topic_id}
-            
             for topic, topic_id in topics.items():          # Iterate over the topics-dictionary from the DB
                 if topic_id == session['db_topic_id']:      # Find the selected topic name
                     session["db_selected_topic"] = topic    # Save the selected topic-name in the session
                     break
             
             i: int = 1
+            session["question_ids"] = {}
             questions: dict = get_questions_by_topic(session['db_topic_id']) # Get all questions for selected topic -> {"question": id}
             for question, db_question_id in questions.items():
                 session["question_ids"][i] = db_question_id # {frontend_id : db_id}
@@ -312,6 +312,12 @@ def quizdb_editquestions():
             question: str = get_question(question_id) 
             answers: list = get_answers(question_id)
             correct_answer = get_correct_answer(question_id)
+            
+            topics: dict = get_topics_by_category(session["selected_category_id"])  # Fetch topics based on selected category - {"topic_name" : topic_id}
+            for topic, topic_id in topics.items():          # Iterate over the topics-dictionary from the DB
+                if topic_id == session['db_topic_id']:      # Find the selected topic name
+                    session["db_selected_topic"] = topic    # Save the selected topic-name in the session
+                    break
 
             action: str = request.form.get('quiz_db')
             match action:       
