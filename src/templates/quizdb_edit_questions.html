@@ -17,55 +17,70 @@
         <div class="form">
             
 
-            <form action="" method="POST">
+            <form method="POST">
                 <div>
                     <label for="category">Kategorie:</label>
                     <select name="category" id="category" onchange="this.form.submit()">
-                        <option value="">{% if not session.db_selected_category %}-- Wähle eine Kategorie --{% else %}{{session.db_selected_category}} {% endif %}</option>
+                        {% if not session.db_selected_category %}
+                            <option value="">-- Wähle eine Kategorie --</option>
+                        {% else %}
+                            <option value="{{ categ_id }}">{{session.db_selected_category}}</option>
+                        {% endif %}
+
                         {% for category, category_id in categories.items() %}
                             <option value="{{ category_id }}">{{ category }}</option>
                         {% endfor %}
                     </select>
                 </div>
             </form>
+
             
-            <form action="" method="POST">
+            <form method="POST">
                 <div>
                     <label for="topic" id="topic">Thema:</label>
                     <select name="topic" id="topic" onchange="this.form.submit()">
-                        <option value="">{% if not session.db_topic_id %}-- Wähle ein Thema --{% else %}{{session.db_selected_topic}}{% endif %}</option>
-                        {% for topic, topic_id in topics.items() %}
-                            <option value="{{ topic_id }}">{{ topic }}</option>
-                        {% endfor %}
+                        {% if not session.db_topic_id %}
+                            <option value="">-- Wähle ein Thema --</option>
+                        {% else %}
+                            <option value="{{ db_topic_id }}">{{session.db_selected_topic}}</option>
+                        {% endif %}
+
+                        {% if topics %}
+                            {% for topic, topic_id in topics.items() %}
+                                <option value="{{ topic_id }}">{{ topic }}</option>
+                            {% endfor %}
+                        {% endif %}
                     </select>
                 </div>
             </form>
 
-            <form action="" method="POST">
+
+            <form method="POST">
                 <div>
                     <label for="question_nr">Frage #:</label>
-                        <select name="question_nr" id="question_nr" onchange="this.form.submit()">
-                            {% if not session.db_question_number %}
-                                <option value="">-- Keine Frage ausgewählt --</option>
+                    <select name="question_nr" id="question_nr" onchange="this.form.submit()">
+                        {% if not session.db_question_number %}
+                            <option value="">-- Keine Frage ausgewählt --</option>
+                        {% endif %}
+
+                        {% if session.db_topic_id %}
+                            {% if session.db_question_number %}
+                                <option value="{{session.db_question_number}}">{{session.db_question_number}}</option>
                             {% endif %}
 
-                            {% if session.db_topic_id %}
-                                {% if session.db_question_number %}
-                                    <option value="{{session.db_question_number}}">{{session.db_question_number}}</option>
-                                {% endif %}
-                                {% for quest_id, db_quest_id in question_ids.items() %}
-                                    <option value="{{ quest_id }}">{{ quest_id }}</option>
-                                {% endfor %}
-                            {% endif %}
-                            </select>
+                            {% for quest_id, db_quest_id in session.question_ids.items() %}
+                                <option value="{{ db_quest_id }}">{{ quest_id }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
                 </div>
 
                 <div>
                     <label for="question" id="question">Frage:</label>
-                    {% if not session.quest %}
+                    {% if not question %}
                         <input type="text" name="question">
                     {% else %}
-                        <input type="text" name="question" value="{{ session.quest }}">
+                        <input type="text" name="question" value="{{ question }}">
                     {% endif %}
                 </div>
 
