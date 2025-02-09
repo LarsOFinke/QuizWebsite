@@ -1,6 +1,15 @@
-from ..db.crud import get_answers, get_correct_answer, get_all_questions
-from ..utils.utility import check_if_has_image
+from ..db.crud import get_answers, get_correct_answer, get_all_questions, get_image
 
+
+
+def check_if_has_image(question_id: int) -> bool:
+    try:
+        get_image(question_id)
+        return True
+    
+    except:
+        return False
+    
 
 def create_question(questionID: int, questionText: str, answer1: str, answer2: str, answer3: str, answer4: str, answerRight: int, has_image: bool):
     return {
@@ -38,5 +47,6 @@ def provide_questions(questions: dict) -> list[dict]:
 
 if __name__ == "__main__":    
     # print(provide_questions(get_all_questions()))
-    
+    # print(check_if_has_image(1))
+    # print(check_if_has_image(2))
     pass
