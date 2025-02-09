@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block header %}
-Bitte Anmelden oder Registrieren
 {% endblock %}
 
 {% block content %}
@@ -33,14 +32,10 @@ Bitte Anmelden oder Registrieren
                 <input id="password" type="password" placeholder="Passwort" required>
             </div>
 
-            <!-- <div class="show-password">
-                <label for="showPassword">Passwort anzeigen!</label>
-                <input type="checkbox" id="showPassword" onclick="togglePassword()">
-            </div> -->
 
             <div class="remember-forgot">
-                <label for="showPassword"><input type="checkbox" id="showPassword" onclick="togglePassword()">Passwort anzeigen!</label>
                 <a href="#">Passwort Vergessen?</a>
+                <label for="showPassword"><input type="checkbox" id="showPassword" onclick="togglePassword()">Passwort anzeigen!</label> 
             </div>
 
             <button type="submit" class="btn">Login</button>

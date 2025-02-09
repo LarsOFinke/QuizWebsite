@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block header %}
-!Hier Registrieren!
 {% endblock %}
 
 {% block content %}
@@ -20,8 +19,37 @@
     {% endwith %}
 
     
+    <div class="wrapper">
+        <form action="">
+            <h1>Registrierung</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Benutzername" required>
+            </div>
+            <div class="input-box">
+                <input id="password" type="password" placeholder="Passwort" required>
+            </div>
+            <div class="input-box">
+                <input id="password2" type="password" placeholder="Passwort Wiederholen" required>
+            </div>
 
-    <form method="POST" class="form">
+
+            <div class="remember-forgot">
+                <button type="reset" class="btn-reset">Zurücksetzen</button>
+                <label for="showPassword"><input type="checkbox" id="showPassword" onclick="togglePasswords()">Passwort anzeigen!</label>
+            </div>
+
+            <button type="submit" class="btn">Registrieren</button>
+        
+
+            <div class="register-link">
+                <p><a href="#">Bereits registriert!</a></p>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- <form method="POST" class="form">
         <label for="username">Benutzername:</label>
         <input type="text" id="username" name="username" required>
 
@@ -48,5 +76,5 @@
             <button type="reset" class="btn primary">Clear</button>
             <button type="submit" class="btn primary">Registrieren</button>
         </div>
-    </form>
+    </form> -->
 {% endblock %}
