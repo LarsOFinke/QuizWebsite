@@ -558,11 +558,12 @@ def add_image(image_path: str, question_id: int) -> bool :
     """Adds an image in binary form to the database.
 
     Args:
-        image_path (str): Path of the image location to convert._
+        image_path (str): Path of the image location to convert.
         question_id (int): The question_id from the database.
 
     Returns:
-        bool: _description_
+        True: if successfully deleted
+        False: if error happened
     """
     sql: str = "INSERT INTO tblImages(ImageBinary, QuestionIDRef) VALUES (?,?)"
     image_binary: bytes = image_to_binary(image_path)
@@ -570,17 +571,44 @@ def add_image(image_path: str, question_id: int) -> bool :
 
 
 def get_image(question_id: int) -> bytes:
+    """Acces saved images in the SQLite3-database.
+
+    Args:
+        question_id (int): Question ID in the database the image belongs to.
+
+    Returns:
+        bytes: Returns the binary data of an image from the DB.
+    """
     sql: str = "SELECT ImageBinary FROM tblImages WHERE QuestionIDRef = ?"
     return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)[0][0]
 
 
 def edit_image(image_path: str, question_id: int) -> bool:
+    """Updates the image for a question in the database.
+
+    Args:
+        image_path (str): Path of the image location to convert.
+        question_id (int): The question_id from the database.
+
+    Returns:
+        True: if successfully deleted
+        False: if error happened
+    """
     sql: str = "UPDATE tblImages SET ImageBinary = ? WHERE QuestionIDRef = ?"
     image_binary: bytes = image_to_binary(image_path)
     return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
 def delete_image(question_id: int) -> bool:
+    """Delets the image of a question in the database.
+
+    Args:
+        question_id (int): The question_id from the database.
+
+    Returns:
+        True: if successfully deleted
+        False: if error happened
+    """
     sql: str = "DELETE FROM tblImages WHERE QuestionIDRef = ?"
     return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ)
 
