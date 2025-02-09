@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_session import Session
 from dotenv import load_dotenv
-from os import getenv
+from os import getenv, path, mkdir
 from datetime import timedelta
 import logging
 
@@ -30,6 +30,9 @@ def create_app():
     app.config["SECRET_KEY"] = getenv("SECRET_KEY")
     app.config['SESSION_USE_SIGNER'] = True
     app.config['SESSION_TYPE'] = 'filesystem'
+    
+    if not path.exists("./sessions"):
+        mkdir("./sessions")
     app.config['SESSION_FILE_DIR'] = './sessions'
     
     app.permanent_session_lifetime = timedelta(minutes=5000)
