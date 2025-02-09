@@ -66,6 +66,18 @@ h1 {
 
 }
 
+.btn {
+
+    background: #FFF;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 700;
+}
 /* ### NAVBAR GENERAL ### */
 
 #header-nav {
@@ -300,18 +312,12 @@ a:hover {
     text-decoration: underline;
 }
 
+
+
 .wrapper .btn {
     width: 100%;
     height: 45px;
-    background: #FFF;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 1.6rem;
-    color: #333;
-    font-weight: 700;
+    
 }
 
 .wrapper .btn-reset {
@@ -508,7 +514,6 @@ a:hover {
         width: 100%;  
     }
 
-
 }
 
 @media (max-width: 480px) {
@@ -554,6 +559,93 @@ a:hover {
 }
 
 
+/* === SELECTION-BEREICH === */
+
+.wrapper-selector {
+    width: 95%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #FFF;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5%;
+    margin-top: 10vh;
+}
+
+.wrapper-selector h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.wrapper-fullquiz {
+    margin-top: 1.5rem;
+    text-align: center;
+    
+}
+
+/* .wrapper-category {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.wrapper-topic {
+    margin-top: 2rem;
+    text-align: center;
+} */
+
+.wrapper-label-selection {
+    font-size: 1.4rem;
+    padding: 2%;
+    
+}
+
+#category {
+
+    font-size: 1.1rem;
+}
+
+#topic {
+
+    font-size: 1.1rem;
+}
+
+.btn-small {
+    font-size: 1.1rem;
+    padding: 1.5%;
+    margin: 8% 2% 4% 2%;
+    
+}
+
+/* .btn-selector {
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+} */
+
+
+
+/* === FOOTER === */
+
+/* #footer {
+    position: relative;
+} */
+
+#footer {
+    
+    position: absolute;
+    bottom: 0;
+    background-color: #3D3F45;
+    width: 100%;
+    color: #FFF;
+    height: auto;
+}
 
 
 
