@@ -78,6 +78,7 @@ def create_quiz_db() -> bool:
                         "QuestionID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " \
                         "QuestionText TEXT NOT NULL, " \
                         "TopicIDRef INTEGER, " \
+                        "ImageIDRef INTEGER" \
                         "FOREIGN KEY(TopicIDRef) REFERENCES tblTopic(TopicID))"
             cursor.execute(sql)
             
@@ -94,9 +95,7 @@ def create_quiz_db() -> bool:
             
             sql: str = "CREATE TABLE tblImages(" \
                         "ImageID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " \
-                        "ImageBinary BLOB, " \
-                        "QuestionIDRef INTEGER NOT NULL UNIQUE, " \
-                        "FOREIGN KEY(QuestionIDRef) REFERENCES tblQuestion(QuestionID))"
+                        "ImageBinary BLOB)"
             cursor.execute(sql)
             
             return True
@@ -404,14 +403,14 @@ def delete_topic(topic_id: int) -> bool:
 
 
 
-def add_question(question: str, topic_id: int) -> bool:
+def add_question(question: str, topic_id: int, image_id: int = 0) -> bool:
     """
     Returns:
         True: if successfully added
         False: if error happened
     """
-    sql: str = "INSERT INTO tblQuestion(QuestionText, TopicIDRef) VALUES (?, ?)"
-    return execute_query(sql, (question, topic_id), CONNECTIONSTRING_QUIZ)
+    sql: str = "INSERT INTO tblQuestion(QuestionText, TopicIDRef, ImageIDRef) VALUES (?, ?, ?)"
+    return execute_query(sql, (question, topic_id, image_id), CONNECTIONSTRING_QUIZ)
 
 
 def get_question(question_id: int) -> str:
@@ -429,8 +428,14 @@ def get_all_questions() -> dict:
     Returns:
         dict: {"question": question_id} -> str: int
     """
-    sql: str = "SELECT * FROM tblQuestion"
-    return execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
+    questions: dict = {}
+    sql: str = "SELECT QuestionID, QuestionText, ImageIDRef FROM tblQuestion"
+    results =  execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
+    
+    for result in results:
+        questions[result[1]] = result[0]
+        
+    return questions
 
 
 def get_questions_by_topic(topic_id: int) -> dict:
@@ -554,32 +559,45 @@ def delete_answers(question_id: int) -> bool:
     return execute_query(sql, (question_id,), CONNECTIONSTRING_QUIZ)
 
 
-def add_image(image_path: str, question_id: int) -> bool :
+
+def add_image(image_path: str) -> bool :
     """Adds an image in binary form to the database.
 
     Args:
         image_path (str): Path of the image location to convert.
-        question_id (int): The question_id from the database.
 
     Returns:
         True: if successfully deleted
         False: if error happened
     """
-    sql: str = "INSERT INTO tblImages(ImageBinary, QuestionIDRef) VALUES (?,?)"
+    sql: str = "INSERT INTO tblImages(ImageBinary) VALUES (?)"
     image_binary: bytes = image_to_binary(image_path)
-    return execute_query(sql=sql, params=(image_binary, question_id), connectionstring=CONNECTIONSTRING_QUIZ)
+    return execute_query(sql=sql, params=(image_binary,), connectionstring=CONNECTIONSTRING_QUIZ)
 
 
-def get_image(question_id: int) -> bytes:
+def get_image(image_id: int) -> bytes:
     """Acces saved images in the SQLite3-database.
+
+    Args:
+        image_id (int): ID in the database the image belongs to.
+
+    Returns:
+        bytes: Returns the binary data of an image from the DB.
+    """
+    sql: str = "SELECT ImageBinary FROM tblImages WHERE ImageID = ?"
+    return execute_query(sql=sql, params=(image_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)[0][0]
+
+
+def get_image_id(question_id: int) -> int:
+    """_summary_
 
     Args:
         question_id (int): Question ID in the database the image belongs to.
 
     Returns:
-        bytes: Returns the binary data of an image from the DB.
+        int: The ImageID in the database.
     """
-    sql: str = "SELECT ImageBinary FROM tblImages WHERE QuestionIDRef = ?"
+    sql: str = "SELECT ImageIDRef FROM tblQuestion WHERE QuestionID = ?"
     return execute_query(sql=sql, params=(question_id,), connectionstring=CONNECTIONSTRING_QUIZ, fetch=True)[0][0]
 
 
@@ -788,7 +806,7 @@ if __name__ == "__main__":
     
     ## IMAGES ##
     
-    # print(add_image("src\static\images\image.png", 1))
+    # print(add_image("src\static\images\python-logo.png", 1))
     # print(get_image(1))
     # print(edit_image("src\static\images\image.png", 1))
     # print(delete_image(1))

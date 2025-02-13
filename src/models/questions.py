@@ -1,17 +1,8 @@
-from ..db.crud import get_answers, get_correct_answer, get_image
+from ..db.crud import get_answers, get_correct_answer, get_image_id
 
-
-
-def check_if_has_image(question_id: int) -> bool:
-    try:
-        get_image(question_id)
-        return True
-    
-    except:
-        return False
     
 
-def create_question(questionID: int, questionText: str, answer1: str, answer2: str, answer3: str, answer4: str, answerRight: int, has_image: bool) -> dict:
+def create_question(questionID: int, questionText: str, answer1: str, answer2: str, answer3: str, answer4: str, answerRight: int, imageID: int) -> dict:
     """This function combines the data pulled from the database to a complete question.
 
     Args:
@@ -19,7 +10,7 @@ def create_question(questionID: int, questionText: str, answer1: str, answer2: s
         questionText (str): Question text from the database.
         answer1 - 4 (str): Answers 1-4 from the database for the question.
         answerRight (int): Number of the correct question (1-4).
-        has_image (bool): True, if image in the database else False.
+        imageID (int): ID of the image in the database - 0 if doesnt exist.
 
     Returns:
         dict: Returns a dictionary resembling a question.
@@ -32,7 +23,7 @@ def create_question(questionID: int, questionText: str, answer1: str, answer2: s
         "answer3": answer3,
         "answer4": answer4,
         "answerRight": answerRight,
-        "hasImage": has_image,
+        "imageID": imageID,
         "answerUser": 0,
         "correctAnswered": False
     }
@@ -56,9 +47,9 @@ def provide_questions(questions: dict) -> list[dict]:
         answer3 = answers[2]
         answer4 = answers[3]
         answerRight = get_correct_answer(questionID)
-        has_image = check_if_has_image(questionID)
+        imageID = int(get_image_id(questionID))
         
-        questions_provided.append(create_question(questionID, questionText, answer1, answer2, answer3, answer4, answerRight, has_image))
+        questions_provided.append(create_question(questionID, questionText, answer1, answer2, answer3, answer4, answerRight, imageID))
     
     return questions_provided
     

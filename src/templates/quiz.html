@@ -16,11 +16,11 @@
                             </div>
                         </div>
                         
-                        {% if question.hasImage %}
+                        {% if question.imageID != 0 %}
                         <hr>
                         <div class="row">
                             <div class="col-6">
-                            <img src="{{ url_for('views.serve_image', question_id=question.questionID) }}" alt="Bild zur Frage">
+                            <img src="{{ url_for('views.serve_image', image_id=question.imageID) }}" alt="Bild zur Frage">
                             </div>
                         </div>
                         {% endif %}
