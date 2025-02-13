@@ -176,14 +176,11 @@ def quizdb_catstops():
             # If no add-button has been pressed, the category must have been selected for a topic to be added 
             case _:
                 if 'category' in request.form:  # Category was selected
-                    selected_category_id = request.form.get('category')    # Get category_id from the form
-                    selected_category_id = int(selected_category_id)
-                    session["db_category_id"] = selected_category_id   # Save the selected category-ID in the session
+                    session["db_category_id"] = int(request.form.get('category'))   # Save the selected category-ID in the session
                         
                     for category, categ_id in categories.items():   # Iterate over the categories-dictionary from the DB
-                        if categ_id == selected_category_id:   # Find the selected category name
-                            selected_category = category
-                            session["db_selected_category"] = selected_category    # Save the selected category-name in the session
+                        if categ_id == session["db_category_id"]:   # Find the selected category name
+                            session["db_selected_category"] = category    # Save the selected category-name in the session
                             break
         
         
