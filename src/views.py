@@ -30,10 +30,7 @@ def serve_image(question_id: str):
 
 @views.route('/selection', methods=['GET', 'POST'])
 def selection():
-    topics = {}
-    selected_category_id = None
-    # Fetch all categories to display in the dropdown
-    categories: dict = get_all_categories()  # {"name": id}
+    categories: dict = get_all_categories()  # Fetch all categories to display in the dropdown - {"name": id}
 
     if request.method == 'POST':
         action: str = request.form.get("start")
@@ -48,28 +45,26 @@ def selection():
                     session["game_mode"] = "categ"
                 
                 case "topic":
-                    selected_topic_id = request.form.get('topic')
-                    session['topic_id'] = selected_topic_id  # Save the selected topic-ID in the session
+                    session['topic_id'] = request.form.get('topic')  # Save the selected topic-ID in the session
                     session["game_mode"] = "topic"
                     
             return redirect(url_for('views.quiz'))  # Start the quiz
         
         
         if 'category' in request.form:  # Category was selected
-            selected_category_id = request.form.get('category')    # Get category_id from the form
-            selected_category_id = int(selected_category_id)
-            session["category_id"] = selected_category_id   # Save the selected category-ID in the session
+            session["category_id"] = int(request.form.get('category'))   # Save the selected category-ID in the session
             
             for category, categ_id in categories.items():   # Iterate over the categories-dictionary from the DB
-                if categ_id == selected_category_id:   # Find the selected category name
-                    selected_category = category
-                    session["selected_category"] = selected_category    # Save the selected category-name in the session
+                if categ_id == session["category_id"]:   # Find the selected category name
+                    session["selected_category"] = category    # Save the selected category-name in the session
                     break
             
-            topics = get_topics_by_category(selected_category_id)  # Fetch topics based on selected category
+            topics = get_topics_by_category(session["category_id"])  # Fetch topics based on selected category
+            
+            return render_template('selection.html', categories=categories, topics=topics)
 
 
-    return render_template('selection.html', categories=categories, topics=topics, selected_category_id=selected_category_id)
+    return render_template('selection.html', categories=categories)
 
 
 @views.route('/quiz', methods=['GET', 'POST'])
@@ -163,8 +158,7 @@ def quizdb_catstops():
     if "is_admin" not in session or not session["is_admin"]:
         return redirect("/")
         
-    selected_category_id = None
-    categories: dict = get_all_categories()  # {"name": id}   # Fetch all categories to display in the dropdown
+    categories: dict = get_all_categories()  # Fetch all categories to display in the dropdown - {"name": id}   
     
     if request.method == 'POST':
         action: str = request.form.get('catstops')
@@ -178,7 +172,8 @@ def quizdb_catstops():
                 new_topic: str = request.form.get("new_topic")
                 add_topic(new_topic, session["db_category_id"])
                 flash("Successfully added new topic!", "info")
-                    
+                   
+            # If no add-button has been pressed, the category must have been selected for a topic to be added 
             case _:
                 if 'category' in request.form:  # Category was selected
                     selected_category_id = request.form.get('category')    # Get category_id from the form
