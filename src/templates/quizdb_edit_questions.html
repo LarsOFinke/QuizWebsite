@@ -68,7 +68,7 @@
                                 <option value="{{session.db_question_number}}">{{session.db_question_number}}</option>
                             {% endif %}
 
-                            {% for quest_id, db_quest_id in session.question_ids.items() %}
+                            {% for quest_id, db_quest_id in session.db_question_ids.items() %}
                                 <option value="{{ db_quest_id }}">{{ quest_id }}</option>
                             {% endfor %}
                         {% endif %}
