@@ -21,7 +21,7 @@ document.querySelector(".wrapper form").addEventListener("submit", e => {
         .then(data => {
             let success = data.success;
             if (success) {
-                window.location.href = "/mainmenu";
+                window.location.href = "/selection";
             } else {
                 createErrorBox("Login fehlgeschlagen!");
             }

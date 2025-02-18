@@ -31,7 +31,7 @@ def serve_image(image_id: str):
 @views.route("/")
 def home():
     if "username" in session:
-        return redirect(url_for("views.mainmenu"))
+        return redirect(url_for("views.selection"))
     
     return render_template("login.html")
 

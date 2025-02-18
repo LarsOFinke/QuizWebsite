@@ -221,7 +221,7 @@ def add_login(username: str, password: str) -> bool:
         False: if error happened
     """
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-    sql: str = "INSERT INTO tblLogin(LoginUsername, LoginPassword, LoginType) VALUES (?, ?, user)"
+    sql: str = "INSERT INTO tblLogin(LoginUsername, LoginPassword, LoginType) VALUES (?, ?, 'user')"
     return execute_query(sql, (username, hashed_password), CONNECTIONSTRING_LOGIN)
     
 

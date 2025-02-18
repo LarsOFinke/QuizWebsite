@@ -24,7 +24,6 @@
                             <ul>
                                 {% if not session.login_confirmed %}
                                     <li><a class="navbar-items" href="/">Login</a></li>
-                                    <li><a class="navbar-items" href="/register">Registrierung</a></li>
                                 {% else %}
                                     <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
                                 {% endif %}
@@ -38,7 +37,7 @@
                                     <li><a class="navbar-items" href="/highscores">Highscores</a></li>
 
                                 {% if session.username %}
-                                    <li><a class="navbar-items" href="/clear-session">Logout</a></li>
+                                    <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
                                 {% endif %}
                             </ul>
 

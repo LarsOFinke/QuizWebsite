@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__)
 @auth.route('/clear-session', methods=['GET'])
 def clear_session():
     session.clear()  # Clear the session
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('views.home'))
 
 
 @auth.route("/login", methods=["POST"])
