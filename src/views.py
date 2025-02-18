@@ -28,6 +28,14 @@ def serve_image(image_id: str):
     return Response(image_stream, mimetype='image/jpeg')    # Return the image as a response with the correct MIME type
 
 
+@views.route("/")
+def home():
+    if "username" in session:
+        return redirect(url_for("views.mainmenu"))
+    
+    return render_template("login.html")
+
+
 @views.route('/selection', methods=['GET', 'POST'])
 def selection():
     categories: dict = get_all_categories()  # Fetch all categories to display in the dropdown - {"name": id}
