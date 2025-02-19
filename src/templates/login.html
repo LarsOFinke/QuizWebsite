@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
-{% block header %}
+
+{% block styles %}
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/login.css') }}">
 {% endblock %}
+
 
 {% block content %}
 
@@ -36,6 +39,10 @@
     </div>
 
 
+    
 
+{% endblock %}
 
+{% block script %}
+    <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
 {% endblock %}

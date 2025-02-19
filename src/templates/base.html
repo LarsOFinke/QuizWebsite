@@ -7,6 +7,12 @@
     <title>Quiz Website</title>
 
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/base.css') }}">
+
+    {% block styles %}
+
+    {% endblock %}
+
 </head>
 
     <body>
@@ -93,23 +99,20 @@
         
             <!-- QUIZWEBSITE LAYOUT -->
 
-            <div id="main-container">
+            
                 
-
-                <h1>
-                    {% block header%}
-                    {% endblock %}
-                </h1>
 
                 
 
-                <div class="content">
-                    {% block content %}
-                    {% endblock %}
-                </div>
+                
 
                 
-            </div>
+{% block content %}
+{% endblock %}
+                
+
+                
+            
 
             <!-- FOOTER -->
 
@@ -124,8 +127,10 @@
         
 
             
-            <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
+            {% block script %}
 
+
+            {% endblock %}
     </body>
 
 </html>
