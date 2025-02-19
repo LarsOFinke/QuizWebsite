@@ -37,6 +37,7 @@ html {
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -574,7 +575,8 @@ a:hover {
 /* === SELECTION-BEREICH === */
 
 .wrapper-selector {
-    width: 95%;
+    min-width: auto;
+    min-height: 200px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -583,13 +585,13 @@ a:hover {
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5%;
-    margin-top: 10vh;
+    
 }
 
 .wrapper-selector h1 {
     font-size: 2rem;
     text-align: center;
+    padding-top: 5px;
 }
 
 .wrapper-fullquiz {
@@ -657,13 +659,13 @@ a:hover {
     margin-right: auto;
     padding: 1.5%;
     margin-top: 10vh;
-}
+} */
 
 .highscore-selection {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+
     font-size: 1.1rem;
     text-align: center;
+    
 }
 
 .highscore-selection h1 {
@@ -678,8 +680,10 @@ a:hover {
 }
 
 #mode {
-    font-size: 1.1rem;
-} */
+
+    position: relative;
+    font-size: 1.2rem;
+}
 
 
 
@@ -697,24 +701,30 @@ a:hover {
     height: 250px;
     overflow: hidden;
     overflow-y: scroll;
-} */
+}
 
 
 
 /* === FOOTER === */
 
-/* #footer {
-    position: relative;
-} */
+
+.content {
+    flex: 1;
+    padding: 1px;
+    
+}
+
 
 #footer {
     
     position: absolute;
     bottom: 0;
-    background-color: #3D3F45;
-    width: 100%;
+    background-color: #333;
     color: #FFF;
-    height: auto;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    
 }
 
 
