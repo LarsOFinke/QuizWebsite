@@ -1,13 +1,73 @@
-/* ### NAVBAR MOBIL ### */
+/* === NAVIGATIONSLEISTE (MOBIL) === */
 
-#mobile-nav img {
+#mobile-nav-button {
+    color: #FFF;
+    float: right;
+    font-size: 2rem;
+    border: 2px solid #FFF;
+    width: 37px;
+    height: 37px;
+    position: relative;
+    margin-top: .4rem;
+    margin-bottom: .5rem;
+}
+
+#mobile-nav-button > span {
+    position: absolute;
+    bottom: -2px;
+    left: 7px;
+}
+
+#mobile-nav-content > ul > li {
+    display: block;
+    background-color: #3D3F45;
+    height: 50px;
+    padding: 0 1.2rem;
+    text-align: center;
+}
+
+#mobile-nav-dropdown {
+    position: relative;
+    display: block;
+    float: right;
+}
+
+#mobile-nav-content {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    display: none;
+}
+
+#mobile-nav-dropdown:hover > #mobile-nav-content {
+    display: block;
+}
+
+#mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    #desktop-nav {
+        display: none;
+    }
+
+    #mobile-nav {
+        display: block;
+    }
+
+}
+
+
+/* #mobile-nav img {
     float: left;
     height: 42px;
     margin-top: 4px;
     margin-left: 4px;
-}
+} */
 
-#mobile-nav h1 {
+/* #mobile-nav h1 {
     float: left;
     margin: .5rem 0 0 2rem;
     padding: .25rem;
@@ -18,15 +78,7 @@
     float: right;
 }
 
-#mobile-nav-button {
-    font-size: 2.5rem;
-    color: var(--dark-red);
-    width: 50px;
-    height: 50px;
-    text-align:center;
-    float: right;
-    position: relative;
-}
+
 
 #mobile-nav-content {
     display: none;
@@ -69,7 +121,7 @@
         display: block;
     }
 
-}
+} */
 
 
 /* ### NAVBAR DESKTOP ### */
@@ -87,22 +139,18 @@
 
 /* === FOOTER === */
 
-
-.content {
+#footer > .container {
     flex: 1;
     padding: 1px;
-    
 }
 
-
-#footer {
-    
+#footer { 
     position: absolute;
     bottom: 0;
     background-color: #333;
     color: #FFF;
     text-align: center;
-    padding: 10px 0;
     width: 100%;
-    
+    z-index: 400;
 }
+

@@ -31,20 +31,19 @@ html {
 * {
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
     box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
+    font-family: "Poppins", sans-serif;
     background: url(../images/classroom.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(4px);
+    overflow: hidden;
 }
 
 
@@ -57,13 +56,13 @@ body {
     clear: both;
 }
 
+
 .active {
     background-color: #A62C21 !important;
 }
 
 h1 {
     color: #FFF;
-    margin-bottom: 1rem;
 
 }
 
@@ -81,7 +80,7 @@ h1 {
 }
 
 .wrapper {
-    width: 320px;
+    width: 310px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -95,15 +94,29 @@ h1 {
 }
 
 
-/* ### NAVBAR GENERAL ### */
+/* === NAVIGATIONSLEISTE === */
 
 #header-nav {
-    position: absolute;
-    top: 0;
     width: 100%;
-    height: 52px;
-    background-color: var(--grey);
-    opacity: .9;
+    height: 50px;
+    background-color: #3D3F45;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 120px;
+}
+
+#header-nav ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+    height: 100%;
+}
+
+#header-nav ul > li {
+    display: inline-block;
+    height: 100%;
+    padding: 0 .4rem 0 .4rem;
 }
 
 .navbar-items {
@@ -116,12 +129,47 @@ h1 {
     padding-top: .35rem;
 }
 
-/* LINK STYLE */
+/* === LINK STYLE === */
 a {
     text-decoration: none;
-    font-size: 1.3rem;
+    
 }
-a:link {
+
+
+#header-nav ul > li > a:link {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#header-nav ul > li > a:visited {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#header-nav ul > li > a:active {
+    color: #808080;
+    text-decoration: none;
+}
+
+#header-nav ul > li > a:hover {
+    color: #808080;
+    text-decoration: none;
+}
+
+#header-nav .col-6 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#header-nav .container,
+#header-nav .row,
+#header-nav .col-6 {
+    height: 100%;
+}
+
+
+
+/* a:link {
     color: var(--gold);
 }
 
@@ -134,20 +182,16 @@ a:visited {
 
 a:hover {
     color: var(--light-red);
-}
+} */
 
 
 /* === GRID-SYSTEM === */
-.col-1 { width: 16.666%; }
 
-.col-2 { width: 33.333%; }
-
-.col-3 { width: 50%;     }
-
-.col-4 { width: 66.666%; }
-
-.col-6 { width: 100%;    }
-
+.container {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .row::after {
     content: "";
@@ -160,6 +204,16 @@ a:hover {
     min-height: 1px;
     padding: .8rem;
 }
+
+.col-1 { width: 16.666%; }
+
+.col-2 { width: 33.333%; }
+
+.col-3 { width: 50%;     }
+
+.col-4 { width: 66.666%; }
+
+.col-6 { width: 100%;    }
 
 
 

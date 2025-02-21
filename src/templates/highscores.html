@@ -8,106 +8,112 @@
 
     <!-- HIGHSCORES-SELECTOR -->
 
-    <div class="wrapper-selector">
-        <form class="form highscore-selection" method="POST">
-            <h1>Highscores</h1>
-            <div class="highscore-select clearfix">
-                
+    <div class="wrapper-highscores">
+        <h1>Highscores</h1>
+        <div class="wrapper-border">
+                <form class="form highscore-selection" method="POST">
                     
-                    <label for="mode">Ranking:</label>
-                    <select name="mode" id="mode" onchange="this.form.submit()">
-            
-                    {% if not session.highscore_mode %}
-                        <option value="">-- Spielmodus --</option>
-                        <option value="full">Alle Bereiche</option> 
-                        <option value="categ">Kategorie</option>
-                        <option value="topic">Thema</option>
-
-                    {% elif session.highscore_mode == "full" %}
-                        <option value="full">Alle Bereiche</option> 
-                        <option value="categ">Kategorie</option>
-                        <option value="topic">Thema</option>
-
-                    {% elif session.highscore_mode == "categ" %}
-                        <option value="categ">Kategorie</option>
-                        <option value="full">Alle Bereiche</option>
-                        <option value="topic">Thema</option>
-
-                    {% elif session.highscore_mode == "topic" %}
-                        <option value="topic">Thema</option>
-                        <option value="full">Alle Bereiche</option> 
-                        <option value="categ">Kategorie</option>
-
-                    {% endif %}
-                </select>
-            </div>
-        </form>
-
-
-        {% if session.highscore_mode == "categ" or session.highscore_mode == "topic" %}
-            <form class="form highscore-selection" method="post">
-                <div class="highscore-select clearfix">
+                    <div class="highscore-select clearfix">
+                                        
+                            <label class="wrapper-fullquiz" for="mode">Ranking:</label>
+                            <select name="mode" id="mode" onchange="this.form.submit()">
                     
-                        <label class="wrapper-fullquiz" for="category">Kategorie:</label>
-                        <select name="category" id="category" onchange="this.form.submit()">
-                    
-                        {% if not session.highscore_category_name %}
-                            <option value="">-- Wähle eine Kategorie --</option>
-                        {% else %}
-                            <option value="{{session.highscore_category_name}}">{{session.highscore_category_name}}</option>
-                        {% endif %}
+                            {% if not session.highscore_mode %}
+                                <option value="">-- Spielmodus --</option>
+                                <option value="full">Alle Bereiche</option> 
+                                <option value="categ">Kategorie</option>
+                                <option value="topic">Thema</option>
 
-                        {% for category, category_id in categories.items() %}
-                            <option value="{{category}}">{{category}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </form>
-        {% endif %}
+                            {% elif session.highscore_mode == "full" %}
+                                <option value="full">Alle Bereiche</option> 
+                                <option value="categ">Kategorie</option>
+                                <option value="topic">Thema</option>
 
-        {% if session.highscore_mode == "topic" %}
-            {% if session.highscore_category_name %}
+                            {% elif session.highscore_mode == "categ" %}
+                                <option value="categ">Kategorie</option>
+                                <option value="full">Alle Bereiche</option>
+                                <option value="topic">Thema</option>
+
+                            {% elif session.highscore_mode == "topic" %}
+                                <option value="topic">Thema</option>
+                                <option value="full">Alle Bereiche</option> 
+                                <option value="categ">Kategorie</option>
+
+                            {% endif %}
+                        </select>
+                    </div>
+                </form>
+
+
+            {% if session.highscore_mode == "categ" or session.highscore_mode == "topic" %}
                 <form class="form highscore-selection" method="post">
                     <div class="highscore-select clearfix">
-                            <label class="wrapper-fullquiz" for="topic">Topic:</label>
-                            <select name="topic" id="topic" onchange="this.form.submit()">
                         
-                            {% if session.highscore_topic_name %}
-                                <option value="{{session.highscore_topic_name}}">{{session.highscore_topic_name}}</option>
+                            <label class="wrapper-fullquiz" for="category">Kategorie:</label>
+                            <select name="category" id="mode" onchange="this.form.submit()">
+                        
+                            {% if not session.highscore_category_name %}
+                                <option value="">-- Wähle eine Kategorie --</option>
                             {% else %}
-                                <option value="">-- Wähle ein Thema--</option>
+                                <option value="{{session.highscore_category_name}}">{{session.highscore_category_name}}</option>
                             {% endif %}
 
-                            {% for topic, topic_id in topics.items() %}
-                                <option value="{{topic}}">{{topic}}</option>
+                            {% for category, category_id in categories.items() %}
+                                <option value="{{category}}">{{category}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </form>
-    </div>
-        {% endif %}
-    {% endif %}
+            {% endif %}
 
-    <!-- HIGHSCORES TABLE -->
-    <div id="highscores-table">
-        <div class="scroll-container">
-            {% if highscores %}
-                <table>
-                    <tr>
-                        <th>Spieler</th>
-                        <th>Punktzahl</th>
-                        <th>Datum</th>
-                    </tr>
-                    {% for player, score, date in highscores %}
-                        <tr>
-                            <td>{{player}}</td>
-                            <td>{{score}}</td>
-                            <td>{{date}}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+            {% if session.highscore_mode == "topic" %}
+                {% if session.highscore_category_name %}
+                    <form class="form highscore-selection" method="post">
+                        <div class="highscore-select clearfix">
+                                <label class="wrapper-fullquiz" for="topic">Themen:</label>
+                                <select name="topic" id="mode" onchange="this.form.submit()">
+                            
+                                {% if session.highscore_topic_name %}
+                                    <option value="{{session.highscore_topic_name}}">{{session.highscore_topic_name}}</option>
+                                {% else %}
+                                    <option value="">-- Auswahl --</option>
+                                {% endif %}
+
+                                {% for topic, topic_id in topics.items() %}
+                                    <option value="{{topic}}">{{topic}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+            
+            {% endif %}
             {% endif %}
         </div>
-    </div>
+    <!-- HIGHSCORES TABLE -->
+        
+        
+            <div id="highscores-table">
+                <div class="scroll-container">
+                    {% if highscores %}
+                        <table>
+                            <tr>
+                                <th>Spieler</th>
+                                <th>Punktzahl</th>
+                                <th>Datum</th>
+                            </tr>
+                            {% for player, score, date in highscores %}
+                                <tr>
+                                    <td>{{player}}</td>
+                                    <td>{{score}}</td>
+                                    <td>{{date}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+    </div>    
+    
+    
     
 {% endblock %}
