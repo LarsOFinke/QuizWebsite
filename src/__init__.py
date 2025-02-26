@@ -23,8 +23,10 @@ def create_app():
     app = Flask(__name__)
     
     from .views import views
+    from .api import api
     from .auth import auth
     app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(auth, url_prefix='/api/auth')
     
     app.config["SECRET_KEY"] = getenv("SECRET_KEY")
