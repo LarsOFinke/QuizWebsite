@@ -2,3 +2,16 @@ form select {
     width: 100%;
 }
 
+.header {
+    justify-content: center;
+    background: url("../images/laurel-wreath.png") no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 20%;
+    
+}
+
+.header h1 {
+    bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

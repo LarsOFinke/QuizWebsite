@@ -153,10 +153,10 @@ form {
     margin: 1.5%;
 }
 form label {
-    font-size: 18px;
+    font-size: 22px;
 }
 form select {
-    font-size: 16px;
+    font-size: 18px;
     width: 75%;
     margin: 4% 0;
 }
@@ -191,6 +191,7 @@ form select {
     width: 100%;
     margin: 3%;
     padding: 1.5%;
+    text-align: center;
 }
 
 table {
@@ -200,7 +201,7 @@ table a {
     font-size: 1.1rem;
 }
 th {
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -251,6 +252,8 @@ footer {
 }
 footer p {
     margin-left: 1rem;
+    color: var(--grey);
+    text-align: center;
 }
 
 
