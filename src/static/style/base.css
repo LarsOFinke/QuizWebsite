@@ -1,156 +1,99 @@
-/* === NAVIGATIONSLEISTE (MOBIL) === */
-
-#mobile-nav-button {
-    color: #FFF;
-    float: right;
-    font-size: 2rem;
-    border: 2px solid #FFF;
-    width: 37px;
-    height: 37px;
-    position: relative;
-    margin-top: .4rem;
-    margin-bottom: .5rem;
-}
-
-#mobile-nav-button > span {
+/* ### NAVBAR GENERAL ### */
+nav {
     position: absolute;
-    bottom: -2px;
-    left: 7px;
+    top: 0;
+    width: 100%;
+    height: 52px;
+    z-index: 1000;
+    background-color: black;
 }
 
-#mobile-nav-content > ul > li {
-    display: block;
-    background-color: #3D3F45;
-    height: 50px;
-    padding: 0 1.2rem;
-    text-align: center;
-}
 
-#mobile-nav-dropdown {
+/* ### NAVBAR DESKTOP ### */
+.desktop-nav {
+    width: 100%;
+    height: 100%;
     position: relative;
-    display: block;
-    float: right;
 }
-
-#mobile-nav-content {
-    position: absolute;
-    right: 0;
-    top: 50px;
-    display: none;
+.desktop-nav ul {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    margin-left: .5rem;
 }
-
-#mobile-nav-dropdown:hover > #mobile-nav-content {
-    display: block;
+.desktop-nav ul > li {
+    height: 100%;
+    display: inline-block;
+    margin-left: .4rem;
+    padding: 0 .4rem 0 .4rem;
 }
-
-#mobile-nav {
-    display: none;
-}
-
-@media (max-width: 768px) {
-
-    #desktop-nav {
-        display: none;
-    }
-
-    #mobile-nav {
-        display: block;
-    }
-
+.desktop-nav ul > li > a {
+    height: 100%;
+    margin-top: .8rem;
+    display: inline-block;
 }
 
 
-/* #mobile-nav img {
+/* ### NAVBAR MOBIL ### */
+.mobile-nav img {
     float: left;
     height: 42px;
     margin-top: 4px;
     margin-left: 4px;
-} */
-
-/* #mobile-nav h1 {
+}
+.mobile-nav h1 {
     float: left;
     margin: .5rem 0 0 2rem;
     padding: .25rem;
     text-decoration: underline;
 }
-
-#mobile-nav-dropdown{
+.mobile-nav-dropdown{
     float: right;
 }
+.mobile-nav-button {
+    font-size: 2.5rem;
+    color: var(--dark-red);
+    width: 50px;
+    height: 50px;
+    text-align:center;
 
-
-
-#mobile-nav-content {
+    float: right;
+    position: relative;
+}
+.mobile-nav-content {
+    background-color: black;
     display: none;
-    background-color: #808080;
     width: fit-content;
     height: fit-content;
     padding-right: 1rem;
-    position: relative;
-    z-index: 500;
-    
 }
-#mobile-nav-content ul {
+.mobile-nav-content ul {
     padding-left: 0;
 }
-#mobile-nav-content li {
+.mobile-nav-content li {
     list-style-type: none;
-    padding: .3rem;
+    padding: .3rem .3rem .3rem 1.3rem;
     margin-bottom: .7rem;
     text-align: center;
 }
-#mobile-nav-dropdown:hover > #mobile-nav-content {
+.mobile-nav-dropdown:hover > .mobile-nav-content {
     display: block;
 }
 
-.navbar-items {
-    position: relative;
-}
 
-#mobile-nav {
+/* NAVBAR VIEWPORT SWITCH */
+.mobile-nav {
+    display: block;
+}
+.desktop-nav {
     display: none;
 }
-
-@media (max-width: 768px) {
-    
-    #desktop-nav {
+@media (min-width: 767px) {
+    .mobile-nav {
         display: none;
     }
-
-    #mobile-nav {
-        display: block;
+    .desktop-nav {
+        display: inline-block;
     }
-
-} */
-
-
-/* ### NAVBAR DESKTOP ### */
-
-#desktop-nav {
-    width: 100%;
 }
-#desktop-nav ul {
-    justify-content: space-evenly;
-    margin-top: .5rem;
-}
-#desktop-nav ul > li {
-    display: inline-block;
-}
-
-/* === FOOTER === */
-
-#footer > .container {
-    flex: 1;
-    padding: 1px;
-}
-
-#footer { 
-    position: absolute;
-    bottom: 0;
-    background-color: #333;
-    color: #FFF;
-    text-align: center;
-    width: 100%;
-    z-index: 400;
-}
-

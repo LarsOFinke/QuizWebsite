@@ -7,16 +7,12 @@
 
 
 {% block content %}
-
-
-
-
     
     <!-- LOGIN-FORM -->
-
     <div class="wrapper">
         <form>
             <h1>Login</h1>
+    
             <div class="input-box">
                 <input type="text" id="username" placeholder="Nutzername" required>
             </div>
@@ -29,20 +25,24 @@
                     <input type="checkbox" id="showPassword" onchange="toggleShowPasswords()">
                 </label>
             </div>
-
+    
             <button type="submit" id="login" class="btn">Einloggen</button>
+    
+            <br class="spacer">
 
             <div class="register-link">
                 <p><a onclick="toggleForms()">Noch nicht registriert?</a></p>
             </div>
+
+            <br class="spacer">
+            
+            <button id="guest" class="btn">Als Gast spielen</button>
+
         </form>
     </div>
-
-
-    
 
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
+<script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
 {% endblock %}

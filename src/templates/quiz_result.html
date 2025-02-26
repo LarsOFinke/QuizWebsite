@@ -4,52 +4,48 @@
 <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/quiz_result.css') }}">    
 {% endblock %}
 
-<!-- ERGEBNIS -->
+
 
 {% block content %}
-<h2>Deine Punktzahl <u>{{result}}%</u>!</h2>
 
+    <!-- ERGEBNIS -->
+    <div class="wrapper centered">
+        <h2>Deine Punktzahl <u>{{result}}%</u>!</h2>
 
+        <br>
 
-<a href="/selection">
-    <button class="btn primary">Nochmal!</button>
-</a>
+        <a href="/selection">
+            <button class="btn-medium">Nochmal!</button>
+        </a>
 
+        <br>
 
+        <h2><u>Quiz-Ergebnis</u></h2>
 
-<h2><u>Quiz-Ergebnis</u></h2>
+        <div class="scroll-container centered bordered">
+            <table class="centered">
+                <tr>
+                    <th>Frage Nr.</th>
+                    {% if session.is_admin %}
+                        <td>Datenbank ID</td>
+                    {% endif %}
+                    <th>Richtig / Falsch</th>
+                    <th>Quiz-Fragen</th>
+                </tr>
 
-
-<table>
-    <tr>
-        <th>Anzahl der Fragen</th>
-        {% if session.is_admin %}
-            <td>Datenbank ID</td>
-        {% endif %}
-        <th>Richtig / Falsch</th>
-        <th>Quiz-Fragen</th>
-    </tr>
-
-    {% for question in questions_game %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            {% if session.is_admin %}
-                <td>{{ question["questionID"] }}</td>
-            {% endif %}
-            <td>{% if question["correctAnswered"] %} Richtig {% else %} Falsch {% endif %}</td>
-            <td><a href="/quizresult/details/{{ loop.index }}" target="_blank">Details</a></td>
-        </tr>
-    {% endfor %}
-</table>
-
-
-<!-- {% for question in questions_game %}
-    {% if question["correctAnswered"] %}
-        <p>Richtig</p>
-    {% else %}
-        <p>Falsch</p>
-    {% endif %}
-    {{ question["questionText"] }}
-{% endfor %} -->
+                {% for question in questions_game %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        {% if session.is_admin %}
+                            <td>{{ question["questionID"] }}</td>
+                        {% endif %}
+                        <td>{% if question["correctAnswered"] %} Richtig {% else %} Falsch {% endif %}</td>
+                        <td><a href="/quizresult/details/{{ loop.index }}" target="_blank">Details</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+    </div>
 
 {% endblock %}

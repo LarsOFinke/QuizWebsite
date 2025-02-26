@@ -6,126 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Website</title>
 
+    <!-- STYLESHEETS -->
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/style.css') }}">
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/base.css') }}">
-
     {% block styles %}
-
     {% endblock %}
-
 </head>
 
-    <body>
+<body>
 
-        <!-- NAVIGATIONSLEISTE -->
+    <!-- ### NAVBAR ### -->
+    <nav>
 
-            <nav id="header-nav">
+        <!-- DESKTOP -->
+        <div class="desktop-nav">
+            <ul>
+                {% if not session.login_confirmed %}
+                    <li><a class="navbar-items" href="/">Startseite</a></li>
+                {% else %}
+                    <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
+                {% endif %}
 
-                <!-- DESKTOP-NAVIGATION -->
+                {% if session.is_admin %}
+                    <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
+                    <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
+                    <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
+                {% endif %}
 
-                <div class="container" id="desktop-nav">
-                    <div class="row">
-                        <div class="col-6">
+                    <li><a class="navbar-items" href="/highscores">Highscores</a></li>
 
-                            <ul>
-                                {% if not session.login_confirmed %}
-                                    <li><a class="navbar-items" href="/">Login</a></li>
-                                {% else %}
-                                    <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
-                                {% endif %}
+                {% if session.username %}
+                    <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
 
-                                {% if session.is_admin %}
-                                    <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
-                                    <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
-                                    <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
-                                {% endif %}
+        <!-- MOBILE-NAVIGATION -->
+        <div class="mobile-nav">
 
-                                    <li><a class="navbar-items" href="/highscores">Highscores</a></li>
+            <div class="mobile-nav-dropdown clearfix">
+                <div class="mobile-nav-button"><span>&equiv;</span></div>
 
-                                {% if session.username %}
-                                    <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
-                                {% endif %}
-                            </ul>
+                <div class="mobile-nav-content clearfix">
+                    <ul>
+                        {% if not session.login_confirmed %}
+                            <li><a class="navbar-items" href="/">Startseite</a></li>
+                        {% else %}
+                            <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
+                        {% endif %}
 
+                        {% if session.is_admin %}
+                            <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
+                            <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
+                            <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
+                        {% endif %}
 
+                            <li><a class="navbar-items" href="/highscores">Highscores</a></li>
 
-                        </div>
-                    </div>
+                        {% if session.username %}
+                            <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
 
-                <!-- MOBILE-NAVIGATION -->
+            </div>
+        </div>
 
-                <div class="container" id="mobile-nav">
-                    <div class="row">
-                        <div class="col-6">
+    </nav>
 
-
-                            <div class="clearfix" id="mobile-nav-dropdown">
-
-                                <div id="mobile-nav-button"><span>&equiv;</span></div>
-
-                                <div class="clearfix" id="mobile-nav-content">
-
-                                    <ul>
-                                        {% if not session.login_confirmed %}
-                                            <li><a class="navbar-items" href="/">Login</a></li>
-                                        {% else %}
-                                            <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
-                                        {% endif %}
-
-                                        {% if session.is_admin %}
-                                            <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
-                                            <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
-                                            <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
-                                        {% endif %}
-
-                                            <li><a class="navbar-items" href="/highscores">Highscores</a></li>
-
-                                        {% if session.username %}
-                                            <li><a class="navbar-items" href="/clear-session">Logout</a></li>
-                                        {% endif %}
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </nav>
-        
-            <!-- QUIZWEBSITE LAYOUT -->
-
+                
+    {% block content %}
+    {% endblock %}
             
-                
 
-                
-
-                
-
-                
-{% block content %}
-{% endblock %}
-            
-            <!-- FOOTER -->
-
-            <footer id="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                             <span>© 2024 Lars-Oliver Finke und Bojan Bader. Alle Rechte vorbehalten.</span>
-                        </div>
-                    </div>
-                </div>  
-            </footer>
-            
-            {% block script %}
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Lars-Oliver Finke. Alle Rechte vorbehalten.</p>
+    </footer>
 
 
-            {% endblock %}
-    </body>
+    <!-- SCRIPTS -->
+    {% block script %}
+    <script src="{{ url_for('static', filename='script/general.js') }}" defer></script>
+    {% endblock %}
+</body>
 
 </html>

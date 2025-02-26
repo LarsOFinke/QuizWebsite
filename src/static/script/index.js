@@ -1,6 +1,31 @@
 "use strict";
 
 
+
+document.getElementById("guest").addEventListener("click", e => {
+    e.preventDefault();
+    // Send login request to Flask backend
+    fetch('http://127.0.0.1:5000/api/auth/login-guest', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let success = data.success;
+        if (success) {
+            window.location.href = "/selection";
+        } else {
+            createErrorBox("Login fehlgeschlagen!");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+})
+
+
 document.querySelector(".wrapper form").addEventListener("submit", e => {
     e.preventDefault();
     const username = document.getElementById("username").value;
@@ -102,8 +127,27 @@ function toggleForms() {
         pw2_input.required = true;
         pw2_box.insertAdjacentElement("afterbegin", pw2_input);
         document.getElementById("show-password").insertAdjacentElement("beforebegin", pw2_box);
+
+        const spacer_list = document.querySelectorAll(".spacer")
+        spacer_list.forEach(e => e.remove());
+
+        document.getElementById("guest").remove();
     } else {
         header.textContent = "Login";
+
+        const spacer_1 = document.createElement("br")
+        const spacer_2 = document.createElement("br")
+        spacer_1.classList.add("spacer");
+        spacer_2.classList.add("spacer");
+        document.querySelector(".register-link").insertAdjacentElement("beforebegin", spacer_1);
+        document.querySelector(".register-link").insertAdjacentElement("afterend", spacer_2);
+
+        const guest_button = document.createElement("button");
+        guest_button.id = "guest";
+        guest_button.className = "btn";
+        guest_button.textContent = "Als Gast spielen";
+        document.querySelector(".wrapper form").insertAdjacentElement("beforeend", guest_button);
+
         button.textContent = "Einloggen";
         button.id = "login";
         anchor.textContent = "Noch nicht registriert?";
@@ -116,20 +160,4 @@ function toggleForms() {
     if (errorbox !== null) {
         errorbox.remove();
     }
-};
-
-
-function createErrorBox(message) {
-    const errorbox = document.getElementById("error_box");
-    if (errorbox !== null) {
-        errorbox.remove();
-    }
-
-    const error_box = document.createElement("div");
-    error_box.id = "error_box";
-    const error_message = document.createElement("p");
-    error_message.textContent = message;
-    error_box.insertAdjacentElement("afterbegin", error_message);
-    const error_anchor = document.querySelector("form h1");
-    error_anchor.insertAdjacentElement("afterend", error_box);
 };

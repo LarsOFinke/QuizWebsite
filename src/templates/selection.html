@@ -7,45 +7,50 @@
 {% block content %}
 
     <!-- SELECTION-BEREICH -->
+    <div class="wrapper centered">
 
-    <div class="wrapper-selector">
+        <h1>Werde zum Quiz-Hunter</h1>
+        
+        <hr>
+        <form class="centered" method="POST" action="{{ url_for('views.selection') }}">
 
-        <h1>Werde zum <br> Quiz-Hunter</h1>
-        
-        
-        <div class="form">
-            <form method="POST" action="{{ url_for('views.selection') }}" class="wrapper-fullquiz">
-                <label class="wrapper-label-selection" for="category">Kategorie:</label>
+                <label for="category">Kategorie:</label>
                 <select name="category" id="category" onchange="this.form.submit()">
-                    {% if not session.selected_category %}<option value="">-- Wähle eine Kategorie --{% else %}<option value="{{session.category_id}}">{{session.selected_category}} {% endif %}</option>
+                    {% if not session.selected_category %}<option value="">-- Kategorie --{% else %}<option value="{{session.category_id}}">{{session.selected_category}} {% endif %}</option>
                         {% for category, category_id in categories.items() %}
                             <option value="{{ category_id }}">{{ category }}</option>
                         {% endfor %}
                 </select>
+ 
 
-                <button type="submit" class="btn btn-small" name="start" value="categ">Spiel eine Kategorie!</button>
-            </form>
-            
-            {% if topics %}
+            <button type="submit" class="btn-small" name="start" value="categ">Spiel' eine Kategorie!</button>
+        </form>
+        
+        {% if topics %}
             <hr>
-                <form method="POST" action="{{ url_for('views.selection') }}" class="wrapper-fullquiz">
-                    <label class="wrapper-label-selection" for="topic">Thema:</label>
+            <form class="centered" method="POST" action="{{ url_for('views.selection') }}">
+
+                    <label for="topic">Thema:</label>
                     <select name="topic" id="topic">
                         {% for topic, topic_id in topics.items() %}
                             <option value="{{ topic_id }}">{{ topic }}</option>
                         {% endfor %}
                     </select>
+
                     
-                    <button type="submit" class="btn btn-small" name="start" value="topic">Spiel ein Thema!</button>
-                </form>
-            {% endif %}
-
-            <hr>
-
-            <form action="" method="POST" class="wrapper-fullquiz">
-                <button type="submit" class="btn btn-small" name="start" value="full">Spiel Alle Bereiche!</button>
+                <button type="submit" class="btn-small" name="start" value="topic">Spiel' ein Thema!</button>
             </form>
-        </div>
-    
+        {% endif %}
+
+        <hr>
+
+        <form class="centered" method="POST">
+            <button type="submit" class="btn-small" name="start" value="full">Alle Bereiche!</button>
+        </form>
+
     </div>
+{% endblock %}
+
+
+{% block scripts %}
 {% endblock %}

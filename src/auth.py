@@ -11,6 +11,14 @@ def clear_session():
     return redirect(url_for('views.home'))
 
 
+@auth.route("/login-guest", methods=["POST"])
+def login_guest():
+    session["username"] = "guest"
+    session["is_admin"] = False
+        
+    return jsonify({"success": True}), 200
+
+
 @auth.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
@@ -19,8 +27,11 @@ def login():
     
     if validate_login(username, password):
         session["username"] = username
+        
         if username == "admin":
             session["is_admin"] = True
+        else:
+            session["is_admin"] = False
             
         return jsonify({"success": True}), 200
     else:
