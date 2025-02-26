@@ -12,6 +12,6 @@ function createErrorBox(message) {
     const error_message = document.createElement("p");
     error_message.textContent = message;
     error_box.insertAdjacentElement("afterbegin", error_message);
-    const error_anchor = document.querySelector("form h1");
+    const error_anchor = document.querySelector(".wrapper h1");
     error_anchor.insertAdjacentElement("afterend", error_box);
 };

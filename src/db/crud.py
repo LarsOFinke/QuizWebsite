@@ -191,7 +191,7 @@ def execute_query(sql: str, params: Tuple[Any, ...], connectionstring: str, fetc
 
 # EXECUTE SQL WITHOUT PARAMS
 def execute_query_get_all(sql: str, connectionstring: str) -> dict:
-    results: dict = {}  # {"name": id} -> str: int
+    results: dict = {}  # {id: "name"} -> int: str
     try:
         with sqlite3.connect(connectionstring) as con:
             cursor = con.cursor()
@@ -201,7 +201,7 @@ def execute_query_get_all(sql: str, connectionstring: str) -> dict:
             rows = cursor.fetchall()
             
             for row in rows:
-                results[row[1]] = row[0]
+                results[row[0]] = row[1]
                 
             return results
         
@@ -301,9 +301,9 @@ def get_all_categories() -> dict:
     """Returns a dictionary containing all categories in the database
 
     Returns:
-        dict: {"category": category_id} -> str: int
+        dict: {category_id: "category"} -> int: str
     """
-    sql: str = "SELECT * FROM tblCategory"
+    sql: str = "SELECT CategoryID, CategoryName FROM tblCategory"
     return execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
 
 
@@ -341,9 +341,9 @@ def get_all_topics() -> dict:
     """Returns a dictionary containing all topics in the database
 
     Returns:
-        dict: {"topic": topic_id} -> str: int
+        dict: {topic_id: "topic"} -> int: str
     """
-    sql: str = "SELECT * FROM tblTopic"
+    sql: str = "SELECT TopicID, TopicName FROM tblTopic"
     return execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
 
 
@@ -426,14 +426,11 @@ def get_all_questions() -> dict:
     """Returns a dictionary containing all questions in the database
 
     Returns:
-        dict: {"question": question_id} -> str: int
+        dict: {question_id: "question"} -> int: str
     """
     questions: dict = {}
-    sql: str = "SELECT QuestionID, QuestionText, ImageIDRef FROM tblQuestion"
-    results =  execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
-    
-    for result in results:
-        questions[result[1]] = result[0]
+    sql: str = "SELECT QuestionID, QuestionText FROM tblQuestion"
+    questions = execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
         
     return questions
 
