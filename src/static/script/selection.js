@@ -65,6 +65,7 @@ fetch_topics();
 function updateTopics(event) {
     const cat_def_opt = document.getElementById("cat_def_opt");
     if (cat_def_opt !== null) { cat_def_opt.remove(); }
+    
     const category_id = event.target.value;
 
     const old_options = document.querySelectorAll("#topic > option");
