@@ -14,32 +14,13 @@
         <br>
 
         <div class="select-wrapper">
-            <form method="POST">
+            <form>
                 <label for="mode">Ranking:</label>
-                <select name="mode" id="mode" onchange="this.form.submit()">
-
-                {% if not session.highscore_mode %}
-                    <option value="">-- Spielmodus --</option>
+                <select id="mode" onchange="updateMode(event)">
+                    <option value="" disabled selected>-- Spielmodus --</option>
                     <option value="full">Alle Bereiche</option> 
                     <option value="categ">Kategorie</option>
                     <option value="topic">Thema</option>
-
-                {% elif session.highscore_mode == "full" %}
-                    <option value="full">Alle Bereiche</option> 
-                    <option value="categ">Kategorie</option>
-                    <option value="topic">Thema</option>
-
-                {% elif session.highscore_mode == "categ" %}
-                    <option value="categ">Kategorie</option>
-                    <option value="full">Alle Bereiche</option>
-                    <option value="topic">Thema</option>
-
-                {% elif session.highscore_mode == "topic" %}
-                    <option value="topic">Thema</option>
-                    <option value="full">Alle Bereiche</option> 
-                    <option value="categ">Kategorie</option>
-
-                {% endif %}
                 </select>
             </form>
 
@@ -106,4 +87,9 @@
 
     </div>    
 
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ url_for('static', filename='script/highscores.js') }}" defer></script>
 {% endblock %}
