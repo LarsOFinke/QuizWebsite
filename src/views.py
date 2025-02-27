@@ -99,15 +99,13 @@ def quiz():
 
 
 @views.route('/quizresult')
-def quiz_result():
-    
+def quiz_result(): 
     return render_template('quiz_result.html')
 
 
 @views.route("/quizresult/details/<question_index>")
 def quiz_result_details(question_index: str):
     question = session["questions_game"][int(question_index)-1]
-    
     return render_template("quiz_result_details.html", question=question)
 
 
@@ -305,45 +303,7 @@ def quizdb_editquestions():
     return render_template('quizdb_edit_questions.html', categories=categories)
 
 
-@views.route('/highscores') # , methods=['GET', 'POST']
+@views.route('/highscores')
 def highscores():
-    # highscores: list = []
-    
-    # if "highscore_mode" not in session:
-    #     session["highscore_categories"] = {}
-    #     session["highscore_topics"] = {}      
-    
-    # # Handle POST request
-    # if request.method == 'POST':
-    #     if "mode" in request.form:
-    #         session["highscore_mode"] = request.form.get("mode")
-            
-    #         if session["highscore_mode"] != "full":
-    #             session["highscore_categories"] = get_all_categories()  # Update categories from the function      
-
-    #         else:   # Reset dictionaries if the mode is 'full'
-    #             highscores = get_highscores_full()
-    #             session["highscore_categories"] = {}
-    #             session["highscore_topics"] = {}  
-        
-    #     if "category" in request.form:
-    #         session["highscore_category_name"] = request.form.get("category")
-
-    #         # Update the category ID based on the selected category
-    #         if session["highscore_category_name"] in session["highscore_categories"]:
-    #             session["highscore_category_id"] = session["highscore_categories"][session["highscore_category_name"]]
-                
-    #             if session["highscore_mode"] == "topic":
-    #                 session["highscore_topics"] = get_topics_by_category(session["highscore_category_id"])
-    #                 session["highscore_topic_name"] = None
-                
-    #             else:
-    #                 highscores = get_highscores_category(session["highscore_category_name"])
-                    
-    #     if "topic" in request.form:
-    #         session["highscore_topic_name"] = request.form.get("topic") 
-    #         highscores = get_highscores_topic(session["highscore_category_name"], session["highscore_topic_name"])
-    
-    # Render the template with default categories and topics
-    return render_template('highscores.html')   # , categories=session["highscore_categories"], topics=session["highscore_topics"], highscores=highscores
+    return render_template('highscores.html')
 
