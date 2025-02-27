@@ -62,4 +62,20 @@ fetch_topics();
 
 
 
+function updateTopics(event) {
+    const category_id = event.target.value;
+
+    const old_options = document.querySelectorAll("#topic > option");
+    old_options.forEach(e => e.remove());
+
+    topics.forEach(entry => {
+        if (entry.category_id === parseInt(category_id)) {
+            let new_option = document.createElement("option");
+            new_option.textContent = entry.topic;
+            new_option.value = entry.topic_id;
+            document.getElementById("topic").insertAdjacentElement("beforeend", new_option);
+        }
+    });
+};
+
 
