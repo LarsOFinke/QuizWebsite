@@ -348,7 +348,7 @@ def get_all_topics() -> list[dict]:
         results.append({
                             "topic_id": row[0],
                             "topic": row[1], 
-                            "category": row[2]
+                            "category_id": row[2]
                         })
     
     return results
