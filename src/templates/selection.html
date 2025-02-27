@@ -15,26 +15,26 @@
 
         <form class="centered">
             <label for="category">Kategorie:</label>
-            <select name="category" id="category">
-                <option>-- Kategorie wählen --</option>
+            <select id="category" onchange="updateTopics(event)">
+                <option id="cat_def_opt">-- Kategorie wählen --</option>
             </select>
-            <button type="submit" class="btn-small" name="start" value="categ">Spiel' eine Kategorie!</button>
+            <button type="submit" class="btn-small">Spiel' eine Kategorie!</button>
         </form>
         
         <hr>
         
         <form class="centered">
             <label for="topic">Thema:</label>
-            <select name="topic" id="topic">
-                <option>-- Thema wählen --</option>
+            <select id="topic">
+                <option id="top_def_opt">-- Thema wählen --</option>
             </select>
-            <button type="submit" class="btn-small" name="start" value="topic">Spiel' ein Thema!</button>
+            <button type="submit" class="btn-small">Spiel' ein Thema!</button>
         </form>
 
         <hr>
 
         <form class="centered" method="POST">
-            <button type="submit" class="btn-small" name="start" value="full">Alle Bereiche!</button>
+            <button type="submit" class="btn-small">Alle Bereiche!</button>
         </form>
 
     </div>
