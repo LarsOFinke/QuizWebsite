@@ -21,35 +21,36 @@ const html_mode_topic = `
 `
 
 
+let new_mode = "";
+
 function updateMode(event) {
-    const new_mode = event.target.value;
+    new_mode = event.target.value;
 
     const old_options = document.querySelectorAll("#mode > option");
     old_options.forEach(e => e.remove());
 
-    if (new_mode === "full") { document.getElementById("mode").innerHTML = html_mode_full; }
-    else if (new_mode === "categ") { document.getElementById("mode").innerHTML = html_mode_categ; }
-    else if (new_mode === "topic") { document.getElementById("mode").innerHTML = html_mode_topic; }
+    if (new_mode === "full") { 
+        document.getElementById("mode").innerHTML = html_mode_full; 
+        const category_options = document.querySelectorAll("#category > option");
+        category_options.forEach(e => e.remove());
+        const topic_options = document.querySelectorAll("#topic > option");
+        topic_options.forEach(e => e.remove());
+    } else if (new_mode === "categ") { 
+        document.getElementById("mode").innerHTML = html_mode_categ; 
+        get_categories();
+    } else if (new_mode === "topic") { 
+        document.getElementById("mode").innerHTML = html_mode_topic; 
+        const category_options = document.querySelectorAll("#category > option");
+        category_options.forEach(e => e.remove());
+        const new_option = document.createElement("option");
+        document.getElementById("category").insertAdjacentElement("afterbegin", new_option)
+        get_categories();
+    }
 };
 
 
-
-// {% if session.highscore_mode == "categ" or session.highscore_mode == "topic" %}
-//     <form method="post">
-//         <label for="category">Kategorie:</label>
-//         <select name="category" id="mode" onchange="this.form.submit()">
-    
-//         {% if not session.highscore_category_name %}
-//             <option value="">-- Wähle eine Kategorie --</option>
-//         {% else %}
-//             <option value="{{session.highscore_category_name}}">{{session.highscore_category_name}}</option>
-//         {% endif %}
-
-//         {% for category, category_id in categories.items() %}
-//             <option value="{{category}}">{{category}}</option>
-//         {% endfor %}
-//         </select>
-//     </form>
-// {% endif %}
+function updateTopics(event) {
+    if (new_mode === "topic") { createTopicOptions(event); }
+};
 
 
