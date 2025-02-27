@@ -3,7 +3,7 @@
 
 
 async function fetch_categories() {
-    let categories = {};
+    let categories = [];
 
     return fetch("http://127.0.0.1:5000/api/get-categories", {
         method: "GET",
@@ -24,10 +24,15 @@ async function fetch_categories() {
 };
 
 
-fetch_categories().then( cats => {
-    Object.values(cats).forEach(category => {
-        console.log(category);
+fetch_categories().then( categories => {
+    categories.forEach(entry => {
+        let category = entry.category;
+        let category_id = entry.category_id; 
+        let new_option = document.createElement("option");
+        new_option.textContent = category;
+        new_option.value = category_id;
+        document.getElementById("category").insertAdjacentElement("beforeend", new_option);
     });
-})
+});
 
 

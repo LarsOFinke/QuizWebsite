@@ -158,6 +158,7 @@ def execute_query(sql: str, params: Tuple[Any, ...], connectionstring: str, fetc
                    
         params (Tuple[Any, ...]): A tuple containing the parameters to bind to the SQL command. 
                                 The number and types of parameters should match the placeholders in the SQL statement.
+                                If no parameters are needed, simply enter an empty tuple "()" instead.
                                 
         fetch (bool, optional): If True, the function fetches and returns all rows of the result set as a list of tuples.
                                 If False, it returns a boolean indicating whether any rows were affected by 
@@ -188,26 +189,6 @@ def execute_query(sql: str, params: Tuple[Any, ...], connectionstring: str, fetc
     except sqlite3.Error as e:
         logging.error(f"An error occurred: {e}")
         return None  # Return None in case of error
-
-# EXECUTE SQL WITHOUT PARAMS
-def execute_query_get_all(sql: str, connectionstring: str) -> dict:
-    results: dict = {}  # {id: "name"} -> int: str
-    try:
-        with sqlite3.connect(connectionstring) as con:
-            cursor = con.cursor()
-            cursor.execute("PRAGMA foreign_keys = ON;")
-            con.commit()
-            cursor.execute(sql)
-            rows = cursor.fetchall()
-            
-            for row in rows:
-                results[row[0]] = row[1]
-                
-            return results
-        
-    except sqlite3.error as e:
-        logging.error(f"An error occured: {e}")
-        return results
 
 
 
@@ -297,14 +278,26 @@ def delete_category(category_id: int) -> bool:
     return execute_query(sql, (category_id,), CONNECTIONSTRING_QUIZ)
 
 
-def get_all_categories() -> dict:
-    """Returns a dictionary containing all categories in the database
+def get_all_categories() -> list[dict]:
+    """Returns a list containing dictionaries with all categories in the database.
 
-    Returns:
-        dict: {category_id: "category"} -> int: str
+    Returns:{
+            "category_id": category_id, -> str: int
+            "category": category        -> str: str
+            }
     """
+    results: list = []
+    
     sql: str = "SELECT CategoryID, CategoryName FROM tblCategory"
-    return execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
+    result = execute_query(sql, (), CONNECTIONSTRING_QUIZ, fetch=True)  
+    
+    for row in result:  # [0] = ID | [1] = Name
+        results.append({
+                            "category_id": row[0],
+                            "category": row[1]
+                        })
+            
+    return results
 
 
 def get_category_id(category_name: str) -> int:
@@ -337,14 +330,28 @@ def add_topic(topic_name: str, category_id: int) -> bool:
     return execute_query(sql, (topic_name, category_id), CONNECTIONSTRING_QUIZ)
 
 
-def get_all_topics() -> dict:
-    """Returns a dictionary containing all topics in the database
+def get_all_topics() -> list[dict]:
+    """Returns a list containing dictionaries with all topics in the database.
 
-    Returns:
-        dict: {topic_id: "topic"} -> int: str
+    Returns:{
+            "topic_id": topic_id,   -> str: int
+            "topic": topic, -> str: str
+            "category_id", category_id  -> str: int
+            } 
     """
-    sql: str = "SELECT TopicID, TopicName FROM tblTopic"
-    return execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
+    results: list = []  
+    
+    sql: str = "SELECT TopicID, TopicName, CategoryIDRef FROM tblTopic"
+    result = execute_query(sql, (), CONNECTIONSTRING_QUIZ, fetch=True)  
+    
+    for row in result:  # [0] = ID | [1] = Name | [2] = Category-ID
+        results.append({
+                            "topic_id": row[0],
+                            "topic": row[1], 
+                            "category": row[2]
+                        })
+    
+    return results
 
 
 def get_topics_by_category(category_id: int) -> dict:
@@ -426,11 +433,12 @@ def get_all_questions() -> dict:
     """Returns a dictionary containing all questions in the database
 
     Returns:
-        dict: {question_id: "question"} -> int: str
+        dict: {question_id: "question", "image": image_id} -> int: str, str: int
     """
     questions: dict = {}
-    sql: str = "SELECT QuestionID, QuestionText FROM tblQuestion"
-    questions = execute_query_get_all(sql, CONNECTIONSTRING_QUIZ)
+    
+    sql: str = "SELECT QuestionID, QuestionText, ImageIDRef FROM tblQuestion"
+    questions = execute_query(sql,() , CONNECTIONSTRING_QUIZ, fetch=True)   # [0] = ID | [1] = Question | [2] = Image-ID
         
     return questions
 
