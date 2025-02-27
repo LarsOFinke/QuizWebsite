@@ -17,31 +17,24 @@
             <form>
                 <label for="mode">Ranking:</label>
                 <select id="mode" onchange="updateMode(event)">
-                    <option value="" disabled selected>-- Spielmodus --</option>
+                    <option>-- Spielmodus --</option>
                     <option value="full">Alle Bereiche</option> 
                     <option value="categ">Kategorie</option>
                     <option value="topic">Thema</option>
                 </select>
             </form>
 
+            <form>
+                <label for="category">Kategorie:</label>
+                <select id="mode" onchange="">
+                    <option id="cat_def_opt">-- Bitte wählen! --</option>
+                </select>
+            </form>
 
-            {% if session.highscore_mode == "categ" or session.highscore_mode == "topic" %}
-                <form method="post">
-                    <label for="category">Kategorie:</label>
-                    <select name="category" id="mode" onchange="this.form.submit()">
-                
-                    {% if not session.highscore_category_name %}
-                        <option value="">-- Wähle eine Kategorie --</option>
-                    {% else %}
-                        <option value="{{session.highscore_category_name}}">{{session.highscore_category_name}}</option>
-                    {% endif %}
 
-                    {% for category, category_id in categories.items() %}
-                        <option value="{{category}}">{{category}}</option>
-                    {% endfor %}
-                    </select>
-                </form>
-            {% endif %}
+
+
+
 
             {% if session.highscore_mode == "topic" %}
                 {% if session.highscore_category_name %}
@@ -91,5 +84,6 @@
 
 
 {% block script %}
+<script src="{{ url_for('static', filename='script/selection.js') }}" defer></script>
 <script src="{{ url_for('static', filename='script/highscores.js') }}" defer></script>
 {% endblock %}

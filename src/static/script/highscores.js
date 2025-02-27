@@ -31,3 +31,25 @@ function updateMode(event) {
     else if (new_mode === "categ") { document.getElementById("mode").innerHTML = html_mode_categ; }
     else if (new_mode === "topic") { document.getElementById("mode").innerHTML = html_mode_topic; }
 };
+
+
+
+// {% if session.highscore_mode == "categ" or session.highscore_mode == "topic" %}
+//     <form method="post">
+//         <label for="category">Kategorie:</label>
+//         <select name="category" id="mode" onchange="this.form.submit()">
+    
+//         {% if not session.highscore_category_name %}
+//             <option value="">-- Wähle eine Kategorie --</option>
+//         {% else %}
+//             <option value="{{session.highscore_category_name}}">{{session.highscore_category_name}}</option>
+//         {% endif %}
+
+//         {% for category, category_id in categories.items() %}
+//             <option value="{{category}}">{{category}}</option>
+//         {% endfor %}
+//         </select>
+//     </form>
+// {% endif %}
+
+
