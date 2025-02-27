@@ -46,6 +46,9 @@ hr {
     width: 100%;
     margin: 5% 0;
 }
+option {
+    text-align: center;
+}
 
 
 /* ### UTILITY ### */
