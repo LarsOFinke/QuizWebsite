@@ -1,0 +1,6 @@
+.question {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border: 2px solid var(--gold);
+}
