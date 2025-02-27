@@ -37,6 +37,7 @@ body {
     background: url("../images/classroom.jpg") no-repeat;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 h1, h2 {
     text-align: center;
