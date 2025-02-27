@@ -18,6 +18,28 @@ function createErrorBox(message) {
 };
 
 
+function removeCategoryOptions() {
+    const category_options = document.querySelectorAll("#category > option");
+    category_options.forEach(e => e.remove());
+};
+
+function removeTopicOptions() {
+    const topic_options = document.querySelectorAll("#topic > option");
+    topic_options.forEach(e => e.remove());
+};
+
+
+function addEmptyCategoryOption() {
+    const new_option = document.createElement("option");
+    document.getElementById("category").insertAdjacentElement("afterbegin", new_option);
+};
+
+function addEmptyTopicOption() {
+    const new_option = document.createElement("option");
+    document.getElementById("topic").insertAdjacentElement("afterbegin", new_option);
+};
+
+
 async function fetch_categories() {
     let categories = [];
 
@@ -51,7 +73,7 @@ function get_categories() {
             document.getElementById("category").insertAdjacentElement("beforeend", new_option);
         });
     });
-}
+};
 
 
 let topics = [];
@@ -87,6 +109,8 @@ function createTopicOptions(event) {
     const old_options = document.querySelectorAll("#topic > option");
     old_options.forEach(e => e.remove());
 
+    addEmptyTopicOption();
+    
     topics.forEach(entry => {
         if (entry.category_id === parseInt(category_id)) {
             let new_option = document.createElement("option");

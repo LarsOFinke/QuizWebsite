@@ -650,25 +650,30 @@ def add_highscore(username: str, mode: str, category: str, topic: str, highscore
     return execute_query(sql, (username, mode, category, topic, highscore, date), CONNECTIONSTRING_SCORES)
 
 
-def get_highscores_full() -> list[tuple]:
-    """Get Highscores played with "Full Quiz"-Mode 
-    ordered by Highscore in descending order (highest scores first)
+def get_highscores_full() -> list[dict]:
+    """Get Highscores played with "Full Quiz"-Mode ordered by Highscore in descending order (highest scores first)
 
-    Returns:
-        list[tuple]: Returns a list of tuples -> ("name", score, "date")
-    
-    Example return:
-        [('guest', 60.0, '2024-11-11')]
+    Returns:{
+            "name": name,
+            "score": score,
+            "date": date
+            }
     """
+    results: list[dict] = []
     sql: str = "SELECT ScoreUsername, ScoreHighscore, ScoreDate FROM tblScores WHERE ScoreMode = 'full' ORDER BY ScoreHighscore DESC"
-    with sqlite3.connect(CONNECTIONSTRING_SCORES) as con:
-        cursor = con.cursor()
-        cursor.execute(sql)
-        results: list = cursor.fetchall()
-        return results
+    result = execute_query(sql, (), CONNECTIONSTRING_SCORES, fetch=True)
+    
+    for row in result:  # [0] = ID | [1] = Score | [2] = Date
+        results.append({
+            "name": row[0],
+            "score": row[1],
+            "date": row[2]
+        })
+        
+    return results
 
-
-def get_highscores_category(category: str) -> list[tuple]:
+### ADJUST DOCSTRING ### 
+def get_highscores_category(category: str) -> list[dict]:
     """Get Highscores played with "Category"-Mode 
     ordered by Highscore in descending order (highest scores first)
 
@@ -681,11 +686,21 @@ def get_highscores_category(category: str) -> list[tuple]:
     Example return:
         [('guest', 60.0, '2024-11-11')]
     """
+    results: list[dict] = []
     sql: str = "SELECT ScoreUsername, ScoreHighscore, ScoreDate FROM tblScores WHERE ScoreMode = 'categ' AND ScoreCategory = ? ORDER BY ScoreHighscore DESC"
-    return execute_query(sql, (category,), CONNECTIONSTRING_SCORES, fetch=True)
+    result =  execute_query(sql, (category,), CONNECTIONSTRING_SCORES, fetch=True)
+    
+    for row in result:  # [0] = ID | [1] = Score | [2] = Date
+        results.append({
+            "name": row[0],
+            "score": row[1],
+            "date": row[2]
+        })
+        
+    return results
 
-
-def get_highscores_topic(category: str, topic: str) -> list[tuple]:
+### ADJUST DOCSTRING ###
+def get_highscores_topic(category: str, topic: str) -> list[dict]:
     """Get Highscores played with "Topic"-Mode 
     ordered by Highscore in descending order (highest scores first)
 
@@ -699,8 +714,18 @@ def get_highscores_topic(category: str, topic: str) -> list[tuple]:
     Example return:
         [('guest', 60.0, '2024-11-11')]
     """
+    results: list[dict] = []
     sql: str = "SELECT ScoreUsername, ScoreHighscore, ScoreDate FROM tblScores WHERE ScoreMode = 'topic' AND ScoreCategory = ? AND ScoreTopic = ? ORDER BY ScoreHighscore DESC"
-    return execute_query(sql, (category, topic), CONNECTIONSTRING_SCORES, fetch=True)
+    result =   execute_query(sql, (category, topic), CONNECTIONSTRING_SCORES, fetch=True)
+    
+    for row in result:  # [0] = ID | [1] = Score | [2] = Date
+        results.append({
+            "name": row[0],
+            "score": row[1],
+            "date": row[2]
+        })
+        
+    return results
 
 
 

@@ -30,9 +30,9 @@
                 </select>
             </form>
 
-            <form method="post">
+            <form>
                 <label for="topic">Themen:</label>
-                <select id="topic" onchange="">
+                <select id="topic" onchange="getTopicHighscores(event)">
                 </select>
             </form>
         </div>
@@ -40,22 +40,13 @@
 
     <!-- HIGHSCORES TABLE -->
         <div class="scroll-container centered bordered">
-            {% if highscores %}
-                <table>
-                    <tr>
-                        <th>Spieler</th>
-                        <th>Punktzahl</th>
-                        <th>Datum</th>
-                    </tr>
-                    {% for player, score, date in highscores %}
-                        <tr>
-                            <td>{{player}}</td>
-                            <td>{{score}}</td>
-                            <td>{{date}}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            {% endif %}
+            <table>
+                <tr>
+                    <th>Spieler</th>
+                    <th>Punktzahl</th>
+                    <th>Datum</th>
+                </tr>
+            </table>
         </div>
 
     </div>    

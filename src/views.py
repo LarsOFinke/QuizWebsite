@@ -3,7 +3,7 @@ from .db.crud import (add_category, get_all_categories, get_category_name,
                   add_topic, get_topics_by_category, get_questions_by_topic, get_topic_name,
                   add_question, get_question, get_question_id, edit_question, delete_question, get_all_questions,
                   add_answers, get_answers_id, get_answers, get_correct_answer, edit_answers, delete_answers,
-                  add_highscore, get_highscores_full, get_highscores_category, get_highscores_topic)
+                  add_highscore)
 from .models.questions import provide_questions
 from datetime import datetime
 
