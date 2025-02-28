@@ -5,7 +5,7 @@ from .db.crud import (get_all_categories, get_category_name,
                     get_all_questions, get_questions_by_topic,
                     add_image, get_image, edit_image, delete_image)
 from .models.questions import provide_questions
-from .utils.utility_quiz_result import compare_user_answers_with_correct, calculate_quiz_result
+from .utils.utility_quiz_result import compare_user_answers_with_correct, calculate_quiz_result, add_result_to_highscores
 from io import BytesIO
 
 api = Blueprint('api', __name__)
@@ -77,6 +77,8 @@ def process_quiz_result():
     question_list = compare_user_answers_with_correct(question_list)
 
     result: float = calculate_quiz_result(question_list)
+    
+    add_result_to_highscores(data, result)
 
     return jsonify({ "question_list": question_list, "result": result }), 200
 

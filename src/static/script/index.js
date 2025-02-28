@@ -15,6 +15,7 @@ document.getElementById("guest").addEventListener("click", e => {
     .then(data => {
         let success = data.success;
         if (success) {
+            localStorage.setItem("username", "guest");
             window.location.href = "/selection";
         } else {
             createErrorBox("Login fehlgeschlagen!");
@@ -46,6 +47,7 @@ document.querySelector(".wrapper form").addEventListener("submit", e => {
         .then(data => {
             let success = data.success;
             if (success) {
+                localStorage.setItem("username", username);
                 window.location.href = "/selection";
             } else {
                 createErrorBox("Login fehlgeschlagen!");

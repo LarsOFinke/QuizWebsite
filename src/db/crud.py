@@ -310,6 +310,16 @@ def get_category_id(category_name: str) -> int:
     return result[0][0] if result else DEFAULT_CATEGORY_ID  # Returns the ID if results have been found, else -1
 
 
+def get_category_idref(topic_id: id) -> int:
+    """
+    Returns:
+        int: ID of the category in the database
+    """
+    sql = "SELECT CategoryIDRef FROM tblTopic WHERE TopicID = ?"
+    result = execute_query(sql, (topic_id,), CONNECTIONSTRING_QUIZ, fetch=True)
+    return result[0][0] if result else DEFAULT_CATEGORY_ID  # Returns the ID if results have been found, else -1
+
+
 def get_category_name(category_id: int) -> str:
     """
     Returns:

@@ -13,6 +13,7 @@ function updateTopics(event) {
 
 async function fetchQuestions(mode, id=0) {
     let questions = [];
+    localStorage.setItem("game_mode", mode);
 
     return fetch(`${api_url}get-questions`, {
         method: "POST",
@@ -37,6 +38,7 @@ function startCategory(event) {
     event.preventDefault();
 
     let category_id = document.getElementById("category").value;
+    localStorage.setItem("category_id", category_id);
     category_id = parseInt(category_id);
 
     fetchQuestions("category", category_id).then(question_list => {
@@ -50,6 +52,7 @@ function startTopic(event) {
     event.preventDefault();
 
     let topic_id = document.getElementById("topic").value;
+    localStorage.setItem("topic_id", topic_id);
     topic_id = parseInt(topic_id);
 
     fetchQuestions("topic", topic_id).then(question_list => {

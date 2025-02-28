@@ -34,13 +34,17 @@ rotate_question();
 
 async function process_quiz_result() {
     let results = [];
+    const game_mode = localStorage.getItem("game_mode");
+    const username = localStorage.getItem("username");
+    const category_id = localStorage.getItem("category_id");
+    const topic_id = localStorage.getItem("topic_id");
 
     return fetch(`${api_url}process-quiz-result`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({question_list})
+        body: JSON.stringify({ question_list, game_mode, username, category_id, topic_id })
     })
     .then(response => response.json())
     .then(data => {

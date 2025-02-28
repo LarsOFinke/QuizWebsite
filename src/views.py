@@ -25,22 +25,6 @@ def selection():
 
 @views.route('/quiz')
 def quiz():
-    #         match session["game_mode"]:
-    #             case "full":
-    #                 category_played: str = "full"
-    #                 topic_played: str = "full"
-                    
-    #             case "categ":
-    #                 category_played: str = get_category_name(session["category_id"])
-    #                 topic_played: str = "all"
-                    
-    #             case "topic":
-    #                 category_played: str = get_category_name(session["category_id"])
-    #                 topic_played: str = get_topic_name(session['topic_id'])
-              
-    #         current_date: str = datetime.now().strftime("%Y-%m-%d")
-    #         add_highscore(session["username"], session["game_mode"], category_played, topic_played, result, current_date)
-
     return render_template('quiz.html')
 
 
