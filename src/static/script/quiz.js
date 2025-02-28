@@ -33,7 +33,9 @@ rotate_question();
 
 
 async function process_quiz_result() {
-    fetch(`${api_url}process-quiz-result`, {
+    let results = [];
+
+    return fetch(`${api_url}process-quiz-result`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -43,8 +45,9 @@ async function process_quiz_result() {
     .then(response => response.json())
     .then(data => {
         localStorage.removeItem("question_list");
-        localStorage.setItem("question_list", JSON.stringify(data.question_list));
-        localStorage.setItem("result", JSON.stringify(data.result));
+        results = data;
+        return results;
+        
     })
 };
 
@@ -54,7 +57,11 @@ function process_user_answer(user_answer) {
     current_question++;
     
     if (current_question >= (question_list.length - 1)) {
-        process_quiz_result().then(e => window.location.href = "/quizresult");
+        process_quiz_result().then(results => {
+            localStorage.setItem("question_list", JSON.stringify(results.question_list));
+            localStorage.setItem("result", JSON.stringify(results.result));
+            window.location.href = "/quizresult";
+        });
     } else {
         rotate_question();
     }

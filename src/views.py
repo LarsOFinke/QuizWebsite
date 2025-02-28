@@ -51,8 +51,8 @@ def quiz_result():
 
 @views.route("/quizresult/details/<question_index>")
 def quiz_result_details(question_index: str):
-    question = session["questions_game"][int(question_index)-1]
-    return render_template("quiz_result_details.html", question=question)
+    question_id: int = int(question_index)-1
+    return render_template("quiz_result_details.html", question_id=question_id)
 
 
 @views.route("/quizdb/addcatstops", methods=["GET", "POST"])

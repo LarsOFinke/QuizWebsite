@@ -4,8 +4,10 @@ from ..db.crud import get_correct_answer
 
 def compare_user_answers_with_correct(question_list: list[dict]) -> list[dict]:
     for question in question_list:
+        correct_answer: int = int(get_correct_answer(question.get("questionID")))
+        question["correctAnswer"] = correct_answer
         
-        if int(question.get("answerUser")) == get_correct_answer(question.get("questionID")):
+        if int(question.get("answerUser")) == correct_answer:
             question["correctAnswered"] = True
             
         else:

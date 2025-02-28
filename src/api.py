@@ -72,11 +72,13 @@ def serve_image(image_id: str):
 @api.route("/process-quiz-result", methods=["POST"])
 def process_quiz_result():
     data: dict = request.get_json()
+    
     question_list: list[dict] = data.get("question_list")
-    compared_question_list: list[dict] = compare_user_answers_with_correct(question_list)
-    result: float = calculate_quiz_result(compared_question_list)
+    question_list = compare_user_answers_with_correct(question_list)
 
-    return jsonify({ "question_list": compared_question_list, "result": result }), 200
+    result: float = calculate_quiz_result(question_list)
+
+    return jsonify({ "question_list": question_list, "result": result }), 200
 
 
 @api.route("/get-highscores", methods=["POST"])
