@@ -15,7 +15,30 @@ function get_results_from_local_storage() {
 
 function show_results() {
     const results = get_results_from_local_storage();
+
     document.getElementById("result").textContent = `${results.result} %`;
+
+    for (let i=1; i < results.question_list.length; i++) {
+        const row = document.createElement("tr");
+
+        const qid = document.createElement("td");
+        qid.textContent = i;
+        row.insertAdjacentElement("beforeend", qid);
+
+        const correct = document.createElement("td");
+        correct.textContent = results.result ? "Richtig" : "Falsch";
+        row.insertAdjacentElement("beforeend", correct);
+
+        const details = document.createElement("td");
+        const details_link = document.createElement("a");
+        details_link.href = `/quizresult/details/${i}`;
+        details_link.target = "_blank";
+        details_link.textContent = "Details";
+        details.insertAdjacentElement("afterbegin", details_link);
+        row.insertAdjacentElement("beforeend", details);
+
+        document.querySelector("table").insertAdjacentElement("beforeend", row);
+    }
 }
 
 show_results();
