@@ -358,14 +358,14 @@ def get_topics_by_category(category_id: int) -> dict:
     """Returns a dictionary containing all topics in the database for a given category
 
     Returns:
-        dict: {"topic": topic_id} -> str: int
+        dict: {topic_id: "topic"} -> int: str
     """
     topics: dict = {}
-    sql: str = "SELECT * FROM tblTopic WHERE CategoryIDRef = ?"
+    sql: str = "SELECT TopicID, TopicName FROM tblTopic WHERE CategoryIDRef = ?"
     results = execute_query(sql, (category_id,), CONNECTIONSTRING_QUIZ, fetch=True)
     
     for result in results:
-        topics[result[1]] = result[0]
+        topics[result[0]] = result[1]
         
     return topics
 
@@ -433,12 +433,15 @@ def get_all_questions() -> dict:
     """Returns a dictionary containing all questions in the database
 
     Returns:
-        dict: {question_id: "question", "image": image_id} -> int: str, str: int
+        dict: {question_id: "question"} -> int: str
     """
     questions: dict = {}
     
-    sql: str = "SELECT QuestionID, QuestionText, ImageIDRef FROM tblQuestion"
-    questions = execute_query(sql,() , CONNECTIONSTRING_QUIZ, fetch=True)   # [0] = ID | [1] = Question | [2] = Image-ID
+    sql: str = "SELECT QuestionID, QuestionText FROM tblQuestion"
+    result = execute_query(sql,() , CONNECTIONSTRING_QUIZ, fetch=True)   # [0] = ID | [1] = Question
+    
+    for row in result:
+        questions.update({row[0]: row[1]})
         
     return questions
 
@@ -454,7 +457,7 @@ def get_questions_by_topic(topic_id: int) -> dict:
     results = execute_query(sql, (topic_id,), CONNECTIONSTRING_QUIZ, fetch=True)
     
     for result in results:
-        questions[result[1]] = result[0]
+        questions[result[0]] = result[1]
         
     return questions
 
@@ -500,7 +503,7 @@ def add_answers(answer1: str, answer2: str, answer3: str, answer4: str, answer_c
     return execute_query(sql, (answer1, answer2, answer3, answer4, answer_correct, question_id), CONNECTIONSTRING_QUIZ)
 
 
-def get_answers(question_id: int) -> list:
+def get_answers(question_id: int) -> list[str]:
     """Returns a list containing the possible answers for a given question (by ID in the database)
     Returns:
         list: [answer1, answer2, answer3, answer4]

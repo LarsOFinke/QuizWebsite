@@ -70,7 +70,7 @@ function getTopicHighscores(event) {
 async function fetch_highscores(mode, category, topic) {
     let highscores = [];
 
-    return fetch("http://127.0.0.1:5000/api/get-highscores", {
+    return fetch(`${api_url}/api/get-highscores`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
