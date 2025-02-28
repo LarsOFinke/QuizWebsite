@@ -33,7 +33,6 @@ rotate_question();
 
 
 async function process_quiz_result() {
-    // ADD RESULT PROCESSING
     fetch(`${api_url}process-quiz-result`, {
         method: "POST",
         headers: {
@@ -43,6 +42,7 @@ async function process_quiz_result() {
     })
     .then(response => response.json())
     .then(data => {
+        localStorage.removeItem("question_list");
         localStorage.setItem("question_list", JSON.stringify(data.question_list));
         localStorage.setItem("result", JSON.stringify(data.result));
     })

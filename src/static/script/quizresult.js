@@ -26,7 +26,7 @@ function show_results() {
         row.insertAdjacentElement("beforeend", qid);
 
         const correct = document.createElement("td");
-        correct.textContent = results.result ? "Richtig" : "Falsch";
+        correct.textContent = results.question_list[i-1].correctAnswered === true ? "Richtig" : "Falsch";
         row.insertAdjacentElement("beforeend", correct);
 
         const details = document.createElement("td");
