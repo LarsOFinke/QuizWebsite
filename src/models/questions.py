@@ -2,14 +2,13 @@ from ..db.crud import get_answers, get_correct_answer, get_image_id
 
     
 
-def create_question(questionID: int, questionText: str, answer1: str, answer2: str, answer3: str, answer4: str, answerRight: int, imageID: int) -> dict:
+def create_question(questionID: int, questionText: str, answers: list[str], imageID: int) -> dict:
     """This function combines the data pulled from the database to a complete question.
 
     Args:
         questionID (int): The question_id from the database.
         questionText (str): Question text from the database.
-        answer1 - 4 (str): Answers 1-4 from the database for the question.
-        answerRight (int): Number of the correct question (1-4).
+        answers (list[str]): Answers 1-4 from the database for the question in a list.
         imageID (int): ID of the image in the database - 0 if doesnt exist.
 
     Returns:
@@ -18,14 +17,9 @@ def create_question(questionID: int, questionText: str, answer1: str, answer2: s
     return {
         "questionID": questionID,
         "questionText": questionText,
-        "answer1": answer1,
-        "answer2": answer2,
-        "answer3": answer3,
-        "answer4": answer4,
-        "answerRight": answerRight,
+        "answers": answers,
         "imageID": imageID,
         "answerUser": 0,
-        "correctAnswered": False
     }
 
 
@@ -39,17 +33,12 @@ def provide_questions(questions: dict) -> list[dict]:
         list[dict]: Returns a list of dictionaries aka JSON containing the questions for the current quiz.
     """
     questions_provided: list = []
-    for question, questionID in questions.items():
+    for questionID, question in questions.items():
         questionText = question
         answers = get_answers(questionID)  # Get answers for the current question
-        answer1 = answers[0]
-        answer2 = answers[1]
-        answer3 = answers[2]
-        answer4 = answers[3]
-        answerRight = get_correct_answer(questionID)
         imageID = int(get_image_id(questionID))
         
-        questions_provided.append(create_question(questionID, questionText, answer1, answer2, answer3, answer4, answerRight, imageID))
+        questions_provided.append(create_question(questionID, questionText, answers, imageID))
     
     return questions_provided
     

@@ -1,8 +1,10 @@
 from flask import Blueprint, request, jsonify, Response
 from .db.crud import (get_all_categories, get_category_name,
-                    get_all_topics, get_topic_name,
+                    get_all_topics, get_topic_name, get_topics_by_category,
                     get_highscores_full, get_highscores_category, get_highscores_topic,
+                    get_all_questions, get_questions_by_topic,
                     add_image, get_image, edit_image, delete_image)
+from .models.questions import provide_questions
 from io import BytesIO
 
 api = Blueprint('api', __name__)
@@ -29,7 +31,29 @@ def get_topics():
     return jsonify({"topics": topics}), 200
 
 
-@api.route("/image/<image_id>", methods=["GET"])
+@api.route("/get-questions", methods=["POST"])
+def get_questions():
+    data: dict = request.get_json() # {
+                                    # "mode": "mode",   -> str: str
+                                    # "id": id  - > str: int
+                                    # }
+    
+    match data.get("mode"):
+        case "full":
+            questions: dict = get_all_questions()
+            question_list: list[dict] = provide_questions(questions)
+            return jsonify({"questions": question_list}), 200
+        
+        case "category":
+            topics: dict = get_topics_by_category(data.get("id"))
+        
+        case "topic":
+            questions: dict = get_questions_by_topic(data.get("id"))
+            question_list: list[dict] = provide_questions(questions)
+            return jsonify({"questions": question_list}), 200
+
+
+@api.route("/serve-image/<image_id>", methods=["GET", "POST"])
 def serve_image(image_id: str):
     """This route serves to return an image to HTML. Implement it as a src={{ url_for('serve_image', question_id=XXX) }}.
 
@@ -45,7 +69,7 @@ def serve_image(image_id: str):
 
 
 
-@api.route("/get-highscores", methods=["POST", "GET"])
+@api.route("/get-highscores", methods=["POST"])
 def get_highscores():
     data: dict = request.get_json() # {
                                     # "mode": mode,

@@ -2,6 +2,10 @@
 
 
 
+const api_url = "http://127.0.0.1:5000";
+
+
+
 function createErrorBox(message) {
     const errorbox = document.getElementById("error_box");
     if (errorbox !== null) {
@@ -43,7 +47,7 @@ function addEmptyTopicOption() {
 async function fetch_categories() {
     let categories = [];
 
-    return fetch("http://127.0.0.1:5000/api/get-categories", {
+    return fetch(`${api_url}/api/get-categories`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -81,7 +85,7 @@ let topics = [];
 async function fetch_topics() {
     topics = [];
 
-    return fetch("http://127.0.0.1:5000/api/get-topics", {
+    return fetch(`${api_url}/api/get-topics`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -96,8 +100,6 @@ async function fetch_topics() {
         console.error('Error:', error);
     });
 };
-
-fetch_topics();
 
 
 function createTopicOptions(event) {

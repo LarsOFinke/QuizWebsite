@@ -25,77 +25,77 @@ def selection():
     return render_template('selection.html')
 
 
-@views.route('/quiz', methods=['GET', 'POST'])
+@views.route('/quiz')   # , methods=['GET', 'POST']
 def quiz():
-    if 'game_mode' not in session:  # Check if player went through the quiz-"selection"
-        return redirect("/selection")
+    # if 'game_mode' not in session:  # Check if player went through the quiz-"selection"
+    #     return redirect("/selection")
       
-    match session["game_mode"]: # Match the selected game mode to receive questions from the database
-        case "full":
-            questions: dict = get_all_questions()  # {"Question": QuestionID} | str: int
+    # match session["game_mode"]: # Match the selected game mode to receive questions from the database
+    #     case "full":
+    #         questions: dict = get_all_questions()  # {"Question": QuestionID} | str: int
             
-        case "categ":
-            questions: dict = {}    # {"Question": QuestionID} | str: int
-            topics: dict = get_topics_by_category(session["category_id"])
-            for topic, topic_id in topics.items():
-                questions.update(get_questions_by_topic(topic_id))  
+    #     case "categ":
+    #         questions: dict = {}    # {"Question": QuestionID} | str: int
+    #         topics: dict = get_topics_by_category(session["category_id"])
+    #         for topic, topic_id in topics.items():
+    #             questions.update(get_questions_by_topic(topic_id))  
 
-        case "topic":                          
-            questions: dict = get_questions_by_topic(session['topic_id'])  # {"Question": QuestionID} | str: int
+    #     case "topic":                          
+    #         questions: dict = get_questions_by_topic(session['topic_id'])  # {"Question": QuestionID} | str: int
     
-    if "question_count" not in session: # Initialize quiz-session       
-        session.pop("questions_game", None)
-        session["questions_game"] = provide_questions(questions) # Create the Questions (list containing dictionaries)
-        session["question_count"] = len(session["questions_game"])
-        session['current_question'] = 0
-        session['score'] = 0
+    # if "question_count" not in session: # Initialize quiz-session       
+    #     session.pop("questions_game", None)
+    #     session["questions_game"] = provide_questions(questions) # Create the Questions (list containing dictionaries)
+    #     session["question_count"] = len(session["questions_game"])
+    #     session['current_question'] = 0
+    #     session['score'] = 0
         
-    if request.method == 'POST':    # User pressed an answer-button
-        user_answer = int(request.form.get("user_answer"))
-        if session["questions_game"][session['current_question']]["answerRight"] == user_answer:
-            session['score'] += 1
-            session["questions_game"][session['current_question']]["correctAnswered"] = True
+    # if request.method == 'POST':    # User pressed an answer-button
+    #     user_answer = int(request.form.get("user_answer"))
+    #     if session["questions_game"][session['current_question']]["answerRight"] == user_answer:
+    #         session['score'] += 1
+    #         session["questions_game"][session['current_question']]["correctAnswered"] = True
 
-        session["questions_game"][session['current_question']]["answerUser"] = user_answer
-        session['current_question'] += 1    # Move to the next question
+    #     session["questions_game"][session['current_question']]["answerUser"] = user_answer
+    #     session['current_question'] += 1    # Move to the next question
 
             
-        if session['current_question'] >= session["question_count"]:   # If all questions have been answered, reset the session and calculate result
-            result: float = round(((session['score'] / session["question_count"]) * 100), 2)
+    #     if session['current_question'] >= session["question_count"]:   # If all questions have been answered, reset the session and calculate result
+    #         result: float = round(((session['score'] / session["question_count"]) * 100), 2)
             
-            match session["game_mode"]:
-                case "full":
-                    category_played: str = "full"
-                    topic_played: str = "full"
+    #         match session["game_mode"]:
+    #             case "full":
+    #                 category_played: str = "full"
+    #                 topic_played: str = "full"
                     
-                case "categ":
-                    category_played: str = get_category_name(session["category_id"])
-                    topic_played: str = "all"
+    #             case "categ":
+    #                 category_played: str = get_category_name(session["category_id"])
+    #                 topic_played: str = "all"
                     
-                case "topic":
-                    category_played: str = get_category_name(session["category_id"])
-                    topic_played: str = get_topic_name(session['topic_id'])
+    #             case "topic":
+    #                 category_played: str = get_category_name(session["category_id"])
+    #                 topic_played: str = get_topic_name(session['topic_id'])
                     
-            current_date: str = datetime.now().strftime("%Y-%m-%d")
+    #         current_date: str = datetime.now().strftime("%Y-%m-%d")
             
-            add_highscore(session["username"], session["game_mode"], category_played, topic_played, result, current_date)
+    #         add_highscore(session["username"], session["game_mode"], category_played, topic_played, result, current_date)
             
-            questions_game: list = session["questions_game"]
+    #         questions_game: list = session["questions_game"]
             
-            # Clear the session variables
-            session.pop('category_id', None)
-            session.pop('topic_id', None)
-            session.pop('game_mode', None)
-            session.pop("question_count", None)
-            session.pop('current_question', None)  
-            session.pop('score', None) 
+    #         # Clear the session variables
+    #         session.pop('category_id', None)
+    #         session.pop('topic_id', None)
+    #         session.pop('game_mode', None)
+    #         session.pop("question_count", None)
+    #         session.pop('current_question', None)  
+    #         session.pop('score', None) 
             
-            return render_template('quiz_result.html', result=result, questions_game=questions_game)  # Render the results page
+    #         return render_template('quiz_result.html', result=result, questions_game=questions_game)  # Render the results page
 
-    current_question = session["questions_game"][session['current_question']]
+    # current_question = session["questions_game"][session['current_question']]
 
     
-    return render_template('quiz.html', question=current_question)
+    return render_template('quiz.html') # , question=current_question
 
 
 @views.route('/quizresult')

@@ -18,7 +18,7 @@
             <select id="category" onchange="updateTopics(event)">
                 <option id="cat_def_opt">-- Bitte wählen! --</option>
             </select>
-            <button type="submit" class="btn-small">Spiel' eine Kategorie!</button>
+            <button class="btn-small" onclick="startCategory(event)">Spiel' eine Kategorie!</button>
         </form>
         
         <hr>
@@ -28,16 +28,17 @@
             <select id="topic">
                 <option>-- Kategorie fehlt! --</option>
             </select>
-            <button type="submit" class="btn-small">Spiel' ein Thema!</button>
+            <button class="btn-small" onclick="startTopic(event)">Spiel' ein Thema!</button>
         </form>
 
         <hr>
 
-        <form class="centered" method="POST">
-            <button type="submit" class="btn-small">Alle Bereiche!</button>
+        <form class="centered">
+            <button class="btn-small" onclick="startFull(event)">Alle Bereiche!</button>
         </form>
 
     </div>
+    
 {% endblock %}
 
 
