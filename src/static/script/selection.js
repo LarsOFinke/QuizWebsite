@@ -14,7 +14,7 @@ function updateTopics(event) {
 async function fetchQuestions(mode, id=0) {
     let questions = [];
 
-    return fetch(`${api_url}/api/get-questions`, {
+    return fetch(`${api_url}get-questions`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

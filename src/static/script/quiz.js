@@ -27,46 +27,55 @@ function rotate_question() {
     answ_3.textContent = question_list[current_question].answers[2];
     const answ_4 = document.getElementById("answ-4");
     answ_4.textContent = question_list[current_question].answers[3];
-
 };
 
 rotate_question();
 
 
+async function process_quiz_result() {
+    // ADD RESULT PROCESSING
+    fetch(`${api_url}process-quiz-result`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({question_list})
+    })
+    .then(response => response.json())
+    .then()
+};
+
+
+function process_user_answer(user_answer) {
+    question_list[current_question].answerUser = user_answer;
+    current_question++;
+    
+    if (current_question >= (question_list.length - 1)) {
+        process_quiz_result().then(e => window.location.href = "/quizresult");
+    } else {
+        rotate_question();
+    }
+};
+
+
 document.getElementById("answ-1").addEventListener("click", e => {
     e.preventDefault();
-    const user_answer = 1;
-
-
-    current_question++;
-    rotate_question();
+    process_user_answer(1);
 });
 
 document.getElementById("answ-2").addEventListener("click", e => {
     e.preventDefault();
-    const user_answer = 2;
-
-
-    current_question++;
-    rotate_question();
+    process_user_answer(2);
 });
 
 document.getElementById("answ-3").addEventListener("click", e => {
     e.preventDefault();
-    const user_answer = 3;
-
-
-    current_question++;
-    rotate_question();
+    process_user_answer(3);
 });
 
 document.getElementById("answ-4").addEventListener("click", e => {
     e.preventDefault();
-    const user_answer = 4;
-
-
-    current_question++;
-    rotate_question();
+    process_user_answer(4);
 });
 
 // function fetchImage(imageId) {

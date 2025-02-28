@@ -5,6 +5,7 @@ from .db.crud import (get_all_categories, get_category_name,
                     get_all_questions, get_questions_by_topic,
                     add_image, get_image, edit_image, delete_image)
 from .models.questions import provide_questions
+from .utils.utility_quiz_result import compare_user_answers_with_correct, calculate_quiz_result
 from io import BytesIO
 
 api = Blueprint('api', __name__)
@@ -67,6 +68,15 @@ def serve_image(image_id: str):
     image_stream = BytesIO(image_binary) # Use io.BytesIO to wrap binary data
     return Response(image_stream, mimetype='image/jpeg')    # Return the image as a response with the correct MIME type
 
+
+@api.route("/process-quiz-result", methods=["POST"])
+def process_quiz_result():
+    data: dict = request.get_json()
+    question_list: list[dict] = data.get("question_list")
+    question_list: list[dict] = compare_user_answers_with_correct(question_list)
+    result: float = calculate_quiz_result(question_list)
+
+    return jsonify({ "question_list": question_list, "result": result }), 200
 
 
 @api.route("/get-highscores", methods=["POST"])

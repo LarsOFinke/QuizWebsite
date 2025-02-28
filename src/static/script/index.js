@@ -35,7 +35,7 @@ document.querySelector(".wrapper form").addEventListener("submit", e => {
     const submit_button = document.querySelector(".wrapper form button");
     if (submit_button.id === "login") {
         // Send login request to Flask backend
-        fetch('http://127.0.0.1:5000/api/auth/login', {
+        fetch(`${api_url}auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ document.querySelector(".wrapper form").addEventListener("submit", e => {
         const password_confirm = document.getElementById("password2").value;
         if (password == password_confirm) {
             // Send registration request to Flask backend
-            fetch("http://127.0.0.1:5000/api/auth/register", {
+            fetch(`${api_url}auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

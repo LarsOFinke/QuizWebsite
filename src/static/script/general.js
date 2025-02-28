@@ -2,7 +2,7 @@
 
 
 
-const api_url = "http://127.0.0.1:5000";
+const api_url = "http://127.0.0.1:5000/api/";
 
 
 
@@ -47,7 +47,7 @@ function addEmptyTopicOption() {
 async function fetch_categories() {
     let categories = [];
 
-    return fetch(`${api_url}/api/get-categories`, {
+    return fetch(`${api_url}get-categories`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -85,7 +85,7 @@ let topics = [];
 async function fetch_topics() {
     topics = [];
 
-    return fetch(`${api_url}/api/get-topics`, {
+    return fetch(`${api_url}get-topics`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
