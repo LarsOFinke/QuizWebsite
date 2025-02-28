@@ -10,7 +10,7 @@
 
     <!-- ERGEBNIS -->
     <div class="wrapper centered">
-        <h2>Deine Punktzahl <u>{{result}}%</u>!</h2>
+        <h2>Dein Ergebnis: <u id="result"></u>!</h2>
 
         <br>
 
@@ -26,26 +26,17 @@
             <table class="centered">
                 <tr>
                     <th>Frage Nr.</th>
-                    {% if session.is_admin %}
-                        <td>Datenbank ID</td>
-                    {% endif %}
                     <th>Richtig / Falsch</th>
                     <th>Quiz-Fragen</th>
                 </tr>
-
-                {% for question in questions_game %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        {% if session.is_admin %}
-                            <td>{{ question["questionID"] }}</td>
-                        {% endif %}
-                        <td>{% if question["correctAnswered"] %} Richtig {% else %} Falsch {% endif %}</td>
-                        <td><a href="/quizresult/details/{{ loop.index }}" target="_blank">Details</a></td>
-                    </tr>
-                {% endfor %}
             </table>
         </div>
         
     </div>
 
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ url_for('static', filename='script/quizresult.js') }}" defer></script>
 {% endblock %}

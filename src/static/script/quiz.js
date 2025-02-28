@@ -42,7 +42,10 @@ async function process_quiz_result() {
         body: JSON.stringify({question_list})
     })
     .then(response => response.json())
-    .then()
+    .then(data => {
+        localStorage.setItem("question_list", JSON.stringify(data.question_list));
+        localStorage.setItem("result", JSON.stringify(data.result));
+    })
 };
 
 
