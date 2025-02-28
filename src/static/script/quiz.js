@@ -2,30 +2,72 @@
 
 
 
-// <form method="POST" class="centered">
-//     <h2>{{ question.questionText }}</h2>
-    
-//     {% if question.imageID != 0 %}
-//         <hr>
-//         <div class="centered">
-//             <img src="{{ url_for('views.serve_image', image_id=question.imageID) }}" alt="Bild zur Frage">
-//         </div>
-//     {% endif %}
-//         <hr>
-    
-//         <button class="btn-medium" name="user_answer" value="1">{{question.answer1}}</button>
-//         <button class="btn-medium" name="user_answer" value="2">{{question.answer2}}</button>
-//         <button class="btn-medium" name="user_answer" value="3">{{question.answer3}}</button>
-//         <button class="btn-medium" name="user_answer" value="4">{{question.answer4}}</button>   
-// </form>
+let question_list = [];
 
-// // Retrieve the string from localStorage
-// const storedData = localStorage.getItem('question_list');
-// // Convert the string back into a JSON object
-// const jsonObject = storedData ? JSON.parse(storedData) : null;
-// console.log(jsonObject);
+function get_questions_from_local_storage() {
+    // Retrieve the string from localStorage
+    const storedQuestions = localStorage.getItem('question_list');
+    // Convert the string back into a JSON object
+    question_list = storedQuestions ? JSON.parse(storedQuestions) : null;
+};
+
+get_questions_from_local_storage();
 
 
+let current_question = 0;
+
+function rotate_question() {
+    const quest_test = document.getElementById("quest-text");
+    quest_test.textContent = question_list[current_question].questionText;
+    const answ_1 = document.getElementById("answ-1");
+    answ_1.textContent = question_list[current_question].answers[0];
+    const answ_2 = document.getElementById("answ-2");
+    answ_2.textContent = question_list[current_question].answers[1];
+    const answ_3 = document.getElementById("answ-3");
+    answ_3.textContent = question_list[current_question].answers[2];
+    const answ_4 = document.getElementById("answ-4");
+    answ_4.textContent = question_list[current_question].answers[3];
+
+};
+
+rotate_question();
+
+
+document.getElementById("answ-1").addEventListener("click", e => {
+    e.preventDefault();
+    const user_answer = 1;
+
+
+    current_question++;
+    rotate_question();
+});
+
+document.getElementById("answ-2").addEventListener("click", e => {
+    e.preventDefault();
+    const user_answer = 2;
+
+
+    current_question++;
+    rotate_question();
+});
+
+document.getElementById("answ-3").addEventListener("click", e => {
+    e.preventDefault();
+    const user_answer = 3;
+
+
+    current_question++;
+    rotate_question();
+});
+
+document.getElementById("answ-4").addEventListener("click", e => {
+    e.preventDefault();
+    const user_answer = 4;
+
+
+    current_question++;
+    rotate_question();
+});
 
 // function fetchImage(imageId) {
 //     const imageUrl = `/serve-image/${imageId}`;  // Flask route URL

@@ -8,7 +8,7 @@
 
     <div class="wrapper centered">
         <form method="POST" class="centered">
-            <h2>questionText</h2>
+            <h2 id="quest-text">qT</h2>
             
             <hr>
             <div class="centered">
@@ -17,11 +17,16 @@
 
             <hr>
         
-            <button class="btn-medium" name="user_answer" value="1">answer1</button>
-            <button class="btn-medium" name="user_answer" value="2">answer2</button>
-            <button class="btn-medium" name="user_answer" value="3">answer3</button>
-            <button class="btn-medium" name="user_answer" value="4">answer4</button>   
+            <button class="btn-medium" id="answ-1">a1</button>
+            <button class="btn-medium" id="answ-2">a2</button>
+            <button class="btn-medium" id="answ-3">a3</button>
+            <button class="btn-medium" id="answ-4">a4</button>   
         </form>
     </div>
 
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ url_for('static', filename='script/quiz.js') }}" defer></script>
 {% endblock %}
