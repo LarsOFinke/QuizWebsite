@@ -18,7 +18,7 @@ function show_results() {
 
     document.getElementById("result").textContent = `${results.result} %`;
 
-    for (let i=1; i < results.question_list.length; i++) {
+    for (let i=1; i <= results.question_list.length; i++) {
         const row = document.createElement("tr");
 
         const qid = document.createElement("td");

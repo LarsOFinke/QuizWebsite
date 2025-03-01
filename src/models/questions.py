@@ -47,7 +47,15 @@ def provide_questions(questions: dict) -> list[dict]:
 def prepare_question_list(question_list: list[dict], question_amount: int) -> list[dict]:
     shuffle(question_list)    
     
-    return question_list
+    counter: int = 0
+    new_question_list:list [dict] = []
+    
+    for question in question_list:
+        if counter < question_amount:
+            new_question_list.append(question)
+        counter += 1
+    
+    return new_question_list
 
 
 

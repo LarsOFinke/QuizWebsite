@@ -39,7 +39,7 @@ def get_questions():
                                     # "id": id  - > str: int
                                     # }
 
-    question_amount: int = data.get("question_amount") 
+    question_amount: int = int(data.get("question_amount")) 
     
     match data.get("mode"):
         case "full":

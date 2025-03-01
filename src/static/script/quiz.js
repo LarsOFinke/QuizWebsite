@@ -55,7 +55,7 @@ function process_user_answer(user_answer) {
     question_list[current_question].answerUser = user_answer;
     current_question++;
     
-    if (current_question >= (question_list.length - 1)) {
+    if (current_question >= (question_list.length)) {
         process_quiz_result().then(results => {
             localStorage.setItem("question_list", JSON.stringify(results.question_list));
             localStorage.setItem("result", JSON.stringify(results.result));
