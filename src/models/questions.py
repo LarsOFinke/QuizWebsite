@@ -1,4 +1,5 @@
-from ..db.crud import get_answers, get_correct_answer, get_image_id
+from ..db.crud import get_answers, get_image_id
+from random import shuffle
 
     
 
@@ -43,10 +44,14 @@ def provide_questions(questions: dict) -> list[dict]:
     return questions_provided
     
 
+def prepare_question_list(question_list: list[dict], question_amount: int) -> list[dict]:
+    shuffle(question_list)    
+    
+    return question_list
+
+
 
 
 if __name__ == "__main__":    
-    # print(provide_questions(get_all_questions()))
-    # print(check_if_has_image(1))
-    # print(check_if_has_image(2))
+
     pass

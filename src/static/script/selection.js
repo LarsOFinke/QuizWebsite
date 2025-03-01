@@ -11,24 +11,27 @@ function updateTopics(event) {
 };
 
 
-const qcount = document.getElementById("qcount");
-const count_label = document.getElementById("count-label");
+const qamount = document.getElementById("qamount");
+const qamount_label = document.getElementById("qamount-label");
 
-function updateCountLabe() {
-    count_label.textContent = qcount.value;
+function updateAmountLabel() {
+    qamount_label.textContent = qamount.value;
 };
+
+updateAmountLabel();
 
 
 async function fetchQuestions(mode, id=0) {
     let questions = [];
     localStorage.setItem("game_mode", mode);
+    let question_amount = qamount.value;
 
     return fetch(`${api_url}get-questions`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({mode, id})
+        body: JSON.stringify({mode, id, question_amount})
     })
     .then(response => response.json())
     .then(data => {

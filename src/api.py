@@ -4,7 +4,7 @@ from .db.crud import (get_all_categories, get_category_name,
                     get_highscores_full, get_highscores_category, get_highscores_topic,
                     get_all_questions, get_questions_by_topic,
                     add_image, get_image, edit_image, delete_image)
-from .models.questions import provide_questions
+from .models.questions import provide_questions, prepare_question_list
 from .utils.utility_quiz_result import compare_user_answers_with_correct, calculate_quiz_result, add_result_to_highscores
 from io import BytesIO
 
@@ -38,20 +38,24 @@ def get_questions():
                                     # "mode": "mode",   -> str: str
                                     # "id": id  - > str: int
                                     # }
+
+    question_amount: int = data.get("question_amount") 
     
     match data.get("mode"):
         case "full":
             questions: dict = get_all_questions()
             question_list: list[dict] = provide_questions(questions)
-            return jsonify({"questions": question_list}), 200
         
-        case "category":
+        case "category":    ### IMPLEMENT THIS ###
             topics: dict = get_topics_by_category(data.get("id"))
         
         case "topic":
             questions: dict = get_questions_by_topic(data.get("id"))
             question_list: list[dict] = provide_questions(questions)
-            return jsonify({"questions": question_list}), 200
+        
+    question_list = prepare_question_list(question_list, question_amount)
+    
+    return jsonify({"questions": question_list}), 200
 
 
 @api.route("/serve-image/<image_id>", methods=["GET", "POST"])
