@@ -13,6 +13,12 @@
         
         <hr>
 
+        <label>Anzahl Fragen:</label>
+        <label id="count-label">10</label>
+        <input type="range" min="0" max="30" value="10" step="1" id="qcount" oninput="updateCountLabe()">
+
+        <hr>
+
         <form class="centered">
             <label for="category">Kategorie:</label>
             <select id="category" onchange="updateTopics(event)">

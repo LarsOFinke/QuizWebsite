@@ -11,6 +11,14 @@ function updateTopics(event) {
 };
 
 
+const qcount = document.getElementById("qcount");
+const count_label = document.getElementById("count-label");
+
+function updateCountLabe() {
+    count_label.textContent = qcount.value;
+};
+
+
 async function fetchQuestions(mode, id=0) {
     let questions = [];
     localStorage.setItem("game_mode", mode);

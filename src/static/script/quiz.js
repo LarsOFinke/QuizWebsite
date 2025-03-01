@@ -17,16 +17,11 @@ get_questions_from_local_storage();
 let current_question = 0;
 
 function rotate_question() {
-    const quest_test = document.getElementById("quest-text");
-    quest_test.textContent = question_list[current_question].questionText;
-    const answ_1 = document.getElementById("answ-1");
-    answ_1.textContent = question_list[current_question].answers[0];
-    const answ_2 = document.getElementById("answ-2");
-    answ_2.textContent = question_list[current_question].answers[1];
-    const answ_3 = document.getElementById("answ-3");
-    answ_3.textContent = question_list[current_question].answers[2];
-    const answ_4 = document.getElementById("answ-4");
-    answ_4.textContent = question_list[current_question].answers[3];
+    document.getElementById("quest-text").textContent = question_list[current_question].questionText;
+    document.getElementById("answ-1").textContent = question_list[current_question].answers[0];
+    document.getElementById("answ-2").textContent = question_list[current_question].answers[1];
+    document.getElementById("answ-3").textContent = question_list[current_question].answers[2];
+    document.getElementById("answ-4").textContent = question_list[current_question].answers[3];
 };
 
 rotate_question();
